@@ -1,0 +1,16 @@
+.header {
+  width: 100%;
+  height: 800px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  background-color: #0070f3;
+
+  .firstHeading {
+    text-align: center;
+    color: white;
+    font-weight: 300;
+    font-size: 2.25em;
+  }
+}
