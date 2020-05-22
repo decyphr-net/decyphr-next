@@ -6,11 +6,15 @@
   align-content: center;
   flex-direction: column;
   background-color: #0070f3;
+  text-align: center;
+  color: white;
 
   .firstHeading {
-    text-align: center;
-    color: white;
     font-weight: 300;
     font-size: 2.25em;
+  }
+
+  .paragraph {
+    font-size: 1.25em;
   }
 }
