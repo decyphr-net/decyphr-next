@@ -1,4 +1,5 @@
 import { FormattedMessage } from 'react-intl'
+import LinkButton from '../elements/Button'
 import styles from './header.module.scss'
 
 export default function Header() {
@@ -13,6 +14,16 @@ export default function Header() {
           id="Index.header.paragraph"
           defaultMessage="Start reading with Decyphr today and define your own personalized learning material!" />
       </p>
+
+      <p className={styles.callToAction}>
+        <LinkButton location="#">
+          <FormattedMessage
+            id="Index.header.calltoaction"
+            defaultMessage="Find Out More!"
+            />
+        </LinkButton>
+      </p>
+      
     </header>
   )
 }
