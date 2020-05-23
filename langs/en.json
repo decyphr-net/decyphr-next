@@ -1,5 +1,9 @@
 {
     "Index.header.heading": "Accelerate Language Learning With Decyphr",
     "Index.header.paragraph": "Start reading with Decyphr today and define your own personalized learning material!",
-    "Index.header.calltoaction": "Find Out More!"
+    "Index.header.calltoaction": "Find Out More!",
+    "Index.about.firstheader": "What does Decyphr do?",
+    "Index.about.firstparagraph": "Decyphr was built to help you translate text from the language that your are learning in to your own native language.",
+    "Index.about.secondparagraph":  "While learning to read a new book you can translate your text and get a breakdown of the structure of your translation, as well as an audio clip so you can also get an idea of what the text should sound like in the original text.",
+    "Index.about.thirdparagraph": "Decyphr will take the text that you have translated and generate quizzes for you to allow you to practice, meaning you create the context for your learning from the books that you are reading."
 }
