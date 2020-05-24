@@ -18,8 +18,14 @@ export default function Header() {
       <p className={styles.callToAction}>
         <LinkButton location="#about">
           <FormattedMessage
-            id="Index.header.calltoaction"
+            id="Index.header.discovermore"
             defaultMessage="Find Out More!"
+            />
+        </LinkButton>
+        <LinkButton location="#about">
+          <FormattedMessage
+            id="Index.header.calltoaction"
+            defaultMessage="Get Access Now!"
             />
         </LinkButton>
       </p>
