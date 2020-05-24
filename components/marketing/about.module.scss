@@ -1,6 +1,9 @@
 .about {
-  margin-top: 5%;
-  margin-left: 7.5%;
+  margin: 5% 7.5% 0 7.5%;
+
+  section {
+    margin-top: 7.5%;
+  }
 
   h2 {
     font-size: 2.25em;
@@ -8,6 +11,29 @@
   }
 
   p {
-    width: 60%;
+    width: 100%;
+  }
+
+  .leftText {
+    float: left;
+    width: 62.5%;
+  }
+
+  .rightImg {
+    display: inline;
+    width: 30%;
+    margin: 7.5% 0 0 7.5%;
+  }
+
+  .leftImg {
+    float: left;
+    width: 30%;
+    margin: 5% 7.5% 0 0;
+  }
+
+  .rightText {
+    margin-top: 7.5%;
+    display: inline;
+    width: 62.5%;
   }
 }
