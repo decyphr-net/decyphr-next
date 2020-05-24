@@ -3,7 +3,7 @@ import styles from './about.module.scss'
 
 export default function About() {
   return (
-    <article className={styles.about}>
+    <article id="about" className={styles.about}>
 
       <section>
         <div className={styles.leftText}>
