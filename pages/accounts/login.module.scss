@@ -1,0 +1,28 @@
+.main {
+  width: 100%;
+  text-align: center;
+  
+  .leftPanel {
+    float: left;
+    width: 50%;
+    height: 1000px;
+    background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+
+    h1 {
+      font-size: 3em;
+    }
+
+    p {
+      font-size: 1.125em;
+    }
+  }
+
+  .rightPanel {
+    display: inline;
+  }
+}

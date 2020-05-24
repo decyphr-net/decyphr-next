@@ -22,7 +22,7 @@ export default function Header() {
             defaultMessage="Find Out More!"
             />
         </LinkButton>
-        <LinkButton location="#about">
+        <LinkButton location="/accounts/login">
           <FormattedMessage
             id="Index.header.calltoaction"
             defaultMessage="Get Access Now!"
