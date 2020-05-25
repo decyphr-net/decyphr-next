@@ -1,17 +1,20 @@
 .main {
   width: 100%;
   text-align: center;
-  
-  .leftPanel {
-    float: left;
-    width: 50%;
-    height: 1000px;
-    background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
-    color: white;
+
+  section {
     display: flex;
     justify-content: center;
     align-content: center;
     flex-direction: column;
+  }
+  
+  .leftPanel {
+    float: left;
+    width: 50%;
+    height: 100vh;
+    background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+    color: white;
 
     h1 {
       font-size: 3em;
@@ -24,5 +27,34 @@
 
   .rightPanel {
     display: inline;
+
+    h2 {
+      margin: 0;
+      padding-top: 18.25%;
+      padding-bottom: 2.5%;
+      color: #00f2fe;
+      font-size: 2.25em;
+    }
+
+    .formInput {
+      width: 30%;
+      padding: 15px 22px;
+      margin: 10px 5px;
+      box-sizing: border-box;
+      font-size: 1.125em;
+    }
+
+    .formButton {
+      width: 30%;
+      padding: 15px 22px;
+      margin: 10px 5px;
+      background: #00f2fe;
+      text-decoration: none;
+      border: none;
+      box-sizing: border-box;
+      font-size: 1.125em;
+      color: white;
+      font-weight: 400;
+    }
   }
 }
