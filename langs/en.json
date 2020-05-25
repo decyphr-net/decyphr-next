@@ -10,5 +10,10 @@
     "Index.about.whydecyphrheader": "Why choose Decyphr?",
     "Index.about.whydecyphrparagraph1": "Decyphr allows you to choose which books to read and enables you to monitor your process throughout your own personalized library. This will be able to tell how much progress you are making on your journey to becoming fluent in your new language.",
     "Index.about.whydecyphrparagraph2":  "Not only does Decyphr translate the text from your book, but it also helps you to understand the structure of the sentences that you have translated by telling you what words are verbs or nouns, and what tenses a verb belongs to.",
-    "Index.about.whydecyphrparagraph3": "Decyphr will quiz you on the phrases that you have translated from your books. This means that, because you are in complete control of the material that you are reading, the material that you will be quizzed on will be tailored to whatever context you choose, giving you a completely personalized learning experience."
+    "Index.about.whydecyphrparagraph3": "Decyphr will quiz you on the phrases that you have translated from your books. This means that, because you are in complete control of the material that you are reading, the material that you will be quizzed on will be tailored to whatever context you choose, giving you a completely personalized learning experience.",
+
+    "Accounts.login.leftpanel.header": "Welcome to Decyphr",
+    "Accounts.login.leftpanel.helpparagraph": "Just login to get back to your learning.",
+    "Accounts.login.leftpanel.signupprompt": "If you don't have an account yet then you can sign up for one here!",
+    "Accounts.login.leftPanel.forgotpasswordprompt": "Or, if you have forgotten your password, click here!"
 }
