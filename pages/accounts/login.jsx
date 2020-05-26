@@ -1,7 +1,51 @@
+import { useState, useEffect } from 'react'
 import { FormattedMessage } from 'react-intl'
+import Router from 'next/router'
 import styles from './login.module.scss'
+import api from '../../utils/api'
 
 export default function Login() {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [errors, setErrors] = useState([])
+
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      Router.push('/')
+    }
+  })
+
+  const handleSuccess = data => {
+    localStorage.setItem("token", data.token)
+    Router.push('/')
+  }
+
+  const handleError = data => {
+    if (typeof data === 'object' && data !== null) {
+      let error = data[Object.keys(data)[0]];
+      setErrors([...error]);
+    } else {
+      setErrors([...data])
+    }
+  }
+
+  const submitForm = e => {
+    e.preventDefault()
+
+    let data = {
+      'username': email,
+      'password': password
+    }
+
+    api({
+      method: 'POST',
+      endpointName: 'login',
+      data: data,
+      setState: handleSuccess,
+      setErrors: handleError
+    })
+  }
+
   return (
     <main className={styles.main}>
       <section className={styles.leftPanel}>
@@ -29,11 +73,16 @@ export default function Login() {
 
       <section className={styles.rightPanel}>
         <h2>Login To Decyphr</h2>
+
+        {errors.length > 0 &&
+          <p>{errors}</p>
+        }
+
         <form>
           
-          <input className={styles.formInput} placeholder="Email" name="email" type="text" />
-          <input className={styles.formInput} placeholder="Password" name="password" type="password" />
-          <button className={styles.formButton}>Login!</button>
+          <input className={styles.formInput} placeholder="Email" name="email" type="text" onChange={e => setEmail(e.target.value)} />
+          <input className={styles.formInput} placeholder="Password" name="password" type="password" onChange={e => setPassword(e.target.value)} />
+          <button className={styles.formButton} onClick={e => submitForm(e)}>Login!</button>
         </form>
         
       </section>
