@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { renderToString } from 'react-dom/server'
 import { FormattedMessage } from 'react-intl'
 import Router from 'next/router'
 import styles from './login.module.scss'
@@ -72,17 +73,38 @@ export default function Login() {
       </section>
 
       <section className={styles.rightPanel}>
-        <h2>Login To Decyphr</h2>
+        <h2>
+          <FormattedMessage
+            id="Accounts.login.rightpanel.header"
+            defaultMessage="Login To Decyphr" />
+          </h2>
 
         {errors.length > 0 &&
           <p>{errors}</p>
         }
 
         <form>
-          
-          <input className={styles.formInput} placeholder="Email" name="email" type="text" onChange={e => setEmail(e.target.value)} />
-          <input className={styles.formInput} placeholder="Password" name="password" type="password" onChange={e => setPassword(e.target.value)} />
-          <button className={styles.formButton} onClick={e => submitForm(e)}>Login!</button>
+          <FormattedMessage id="Accounts.login.rightpanel.emailfield" defaultMessage="Email">
+            {
+              placeholder => (
+                <input className={styles.formInput} placeholder={placeholder} name="email" type="text" onChange={e => setEmail(e.target.value)} />
+              )
+            }
+          </FormattedMessage>
+
+          <FormattedMessage id="Accounts.login.rightpanel.passwordfield" defaultMessage="Password">
+            {
+              placeholder => (
+                <input className={styles.formInput} placeholder={placeholder} name="password" type="password" onChange={e => setPassword(e.target.value)} />
+              )
+            }
+          </FormattedMessage>
+
+          <button className={styles.formButton} onClick={e => submitForm(e)}>
+            <FormattedMessage
+              id="Accounts.login.rightpanel.loginbutton"
+              defaultMessage="Login!" />
+          </button>
         </form>
         
       </section>

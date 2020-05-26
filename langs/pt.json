@@ -15,5 +15,9 @@
     "Accounts.login.leftpanel.header": "Bem-vindo ao Decyphr",
     "Accounts.login.leftpanel.helpparagraph": "Basta fazer login para voltar ao seu aprendizado.",
     "Accounts.login.leftpanel.signupprompt": "Se você ainda não tem uma conta, pode se inscrever aqui!",
-    "Accounts.login.leftPanel.forgotpasswordprompt": "Ou, se você esqueceu sua senha, clique aqui!"
+    "Accounts.login.leftPanel.forgotpasswordprompt": "Ou, se você esqueceu sua senha, clique aqui!",
+    "Accounts.login.rightpanel.header": "Entrar no Decyphr",
+    "Accounts.login.rightpanel.emailfield": "E-mail",
+    "Accounts.login.rightpanel.passwordfield": "Senha",
+    "Accounts.login.rightpanel.loginbutton": "Entrar"
 }
