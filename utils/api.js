@@ -3,7 +3,9 @@ const headers = {
 }
 
 const urls = {
-  login: "auth/"
+  login: 'auth/',
+  register: 'users/',
+  languages: 'languages/'
 }
 
 export default async function api({
@@ -22,7 +24,8 @@ export default async function api({
 
   let result = await response.json()
 
-  if (response.status === 200) {
+  if (response.status === 200 || response.status === 201) {
+    console.l
     setState(result)
   } else {
     setErrors(result)
