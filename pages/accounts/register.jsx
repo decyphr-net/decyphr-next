@@ -48,7 +48,6 @@ export default function Register({ languages }) {
   }
 
   const login = () => {
-    console.log("hello")
     let data = {
       'username': email,
       'password': password
