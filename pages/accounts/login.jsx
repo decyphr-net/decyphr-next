@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { FormattedMessage } from 'react-intl'
 import Router from 'next/router'
 import Head from 'next/head'
+import Link from 'next/link'
 import styles from './login.module.scss'
 import api from '../../utils/api'
 
@@ -69,7 +70,12 @@ export default function Login() {
           <p>
             <FormattedMessage
               id="Accounts.login.leftpanel.signupprompt"
-              defaultMessage="If you don't have an account yet then you can sign up for one here!" />
+              defaultMessage="If you don't have an account yet then you can " />
+
+            <Link href="/accounts/register">
+              <a><FormattedMessage id="Accounts.login.leftpanel.signuplink" defaultMessage="sign up for one here!"/></a>
+            </Link>
+
             </p>
           <p>
             <FormattedMessage
