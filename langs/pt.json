@@ -19,5 +19,16 @@
     "Accounts.login.rightpanel.header": "Entrar no Decyphr",
     "Accounts.login.rightpanel.emailfield": "E-mail",
     "Accounts.login.rightpanel.passwordfield": "Senha",
-    "Accounts.login.rightpanel.loginbutton": "Entrar"
+    "Accounts.login.rightpanel.loginbutton": "Entrar",
+    "Accounts.register.leftpanel.header": "Registre-se no Decyphr",
+    "Accounts.register.leftpanel.emailfield": "E-mail",
+    "Accounts.register.leftpanel.usernamefield": "Usuário",
+    "Accounts.register.leftpanel.passwordfield": "Senha",
+    "Accounts.register.leftpanel.nativelanguage": "Língua Nativa",
+    "Accounts.register.leftpanel.newlanuagagefield": "Língua Nova",
+    "Accounts.register.leftpanel.lanuagepreferencefield": "Preferência de idioma",
+    "Accounts.register.leftpanel.registerbutton": "Registrar!",
+    "Accounts.register.rightpanel.header": "Bem-vindo ao Decyphr",
+    "Accounts.register.rightpanel.helpparagraph": "Você está apenas a um formulário simples da sua nova experiência de aprendizado!",
+    "Accounts.register.rightpanel.loginprompt": "Se você já possui uma conta, pode fazer login aqui!"
 }
