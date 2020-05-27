@@ -35,7 +35,7 @@ export default function Register({ languages }) {
 
   const handleSuccess = data => {
     localStorage.setItem('token', data.token)    
-    Router.push('/')
+    Router.push('/dashboard')
   }
 
   const handleError = data => {

@@ -13,7 +13,7 @@ export default function Login() {
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
-      Router.push('/')
+      Router.push('/dashboard')
     }
   })
 
