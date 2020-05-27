@@ -34,7 +34,7 @@ export default function Register({ languages }) {
   }, [])
 
   const handleSuccess = data => {
-    localStorage.setItem("token", data.token)
+    localStorage.setItem('token', data.token)    
     Router.push('/')
   }
 
@@ -81,6 +81,12 @@ export default function Register({ languages }) {
       setState: login,
       setErrors: handleError
     })
+  }
+
+  const updateLanguagePreference = value => {
+    let language = languages[value - 1]
+    localStorage.setItem('languagePreference', language.short_code)
+    setLanguagePreference(language.id)
   }
 
   return(
@@ -158,7 +164,7 @@ export default function Register({ languages }) {
             <FormattedMessage id="Accounts.register.leftpanel.lanuagepreferencefield" defaultMessage="Your Language Preference">
               {
                 placeholder => (
-                  <select className={styles.formInput} onChange={e => setLanguagePreference(e.target.value)}>
+                  <select className={styles.formInput} onChange={e => updateLanguagePreference(e.target.value)}>
                     <option value="" selected disabled hidden>{placeholder}</option>
                     {languages.map((language, index) => {
                       return <option key={index} value={language.id}>{language.name}</option>

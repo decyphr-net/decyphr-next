@@ -14,7 +14,11 @@ export default function App({ Component, pageProps }) {
   const [language, setLanguage] = useState('en')
 
   useEffect(() => {
-    setLanguage(navigator.language.split(/[-_]/)[0])
+    if (localStorage.getItem('languagePreference')) {
+      setLanguage(localStorage.getItem('languagePreference'))
+    } else {
+      setLanguage(navigator.language.split(/[-_]/)[0])
+    }
   })
 
   return (
