@@ -135,7 +135,7 @@ export default function Register({ languages }) {
               }
             </FormattedMessage>
 
-            <FormattedMessage id="Accounts.register.leftpanel.nativelanguage" defaultMessage="Native Lanuage">
+            <FormattedMessage id="Accounts.register.leftpanel.nativelanguage" defaultMessage="Native Language">
               {
                 placeholder => (
                   <select className={styles.formInput} onChange={e => setNativeLanguage(e.target.value)}>
