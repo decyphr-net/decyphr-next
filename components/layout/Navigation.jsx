@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import styles from './navigation.module.scss'
 
 export default function Navigation() {
@@ -5,7 +6,11 @@ export default function Navigation() {
     <nav className={styles.navigation}>
       <h2>Decyphr</h2>
       <ul>
-        <li><a href="">My Library</a></li>
+        <li>
+          <Link href="/library">
+            <a>My Library</a>
+          </Link>
+        </li>
         <li><a href="">Practice</a></li>
         <li><a href="">Profile</a></li>
         <li><a href="">Logout</a></li>
