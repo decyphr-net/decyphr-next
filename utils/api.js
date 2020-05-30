@@ -1,11 +1,21 @@
-const headers = {
-  'Content-type': 'application/json'
-}
-
 const urls = {
   login: 'auth/',
   register: 'users/',
-  languages: 'languages/'
+  languages: 'languages/',
+  dashboard: 'dashboard/'
+}
+
+function getHeaders(authRequired) {
+  if (authRequired) {
+    return {
+      'Content-type': 'application/json',
+      'Authorization': 'Token ' + localStorage.getItem('token')
+    }
+  } else {
+    return {
+      'Content-type': 'application/json'
+    }
+  }
 }
 
 export default async function api({
@@ -13,8 +23,13 @@ export default async function api({
   endpointName,
   data,
   setState,
-  setErrors
+  setErrors,
+  authRequired
 }) {
+
+  const headers = getHeaders(authRequired)
+  console.log(headers)
+
   let response = await fetch(
     process.env.api + urls[endpointName], {
       method: method,
@@ -25,7 +40,6 @@ export default async function api({
   let result = await response.json()
 
   if (response.status === 200 || response.status === 201) {
-    console.l
     setState(result)
   } else {
     setErrors(result)
