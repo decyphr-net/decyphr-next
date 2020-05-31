@@ -1,7 +1,6 @@
 import React from 'react'
-import Router from 'next/router'
 import Head from 'next/head'
-import Navigation from '../../components/layout/Navigation'
+import DashboardLayout from '../../components/layout/dashboard'
 import styles from './library.module.scss'
 
 export default class Library extends React.Component {
@@ -10,11 +9,15 @@ export default class Library extends React.Component {
   }
 
   componentDidMount = async () => {
-    if (!window.localStorage.getItem('token')) {
-      Router.push('/accounts/login')
+    this.setState({"libraryItems": JSON.parse(localStorage.getItem('library'))})
+  }
+
+  truncateString = string => {
+    if (string.length <= 150) {
+      return string
     }
 
-    this.setState({"libraryItems": JSON.parse(localStorage.getItem('library'))})
+    return string.slice(0, 150) + '...'
   }
 
   render () {
@@ -25,25 +28,24 @@ export default class Library extends React.Component {
           <link rel="icon" href="/favicon.ico" />
           <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3/build/web/hack.css"></link>
         </Head>
-  
-        <main className={styles.library}>
-          <Navigation />
-          <section>
-            <h1>Library</h1>
-            <p>Welcome to your Library. Here you can manage the books in your library or add more!</p>
-          </section>
-  
-          <section>
+
+        <DashboardLayout pageTitle="Library" pageSubtitle="Welcome to your Library. Here you can manage the books in your library or add more!">
+          <ul className={styles.bookPanel}>
             {this.state.libraryItems.map((item, index) => {
+              console.log(item)
               return (
-                <>
-                <img src={item.book.small_thumbnail} />
-                <p key={index}>{item.book.title}</p>
-                </>
+                <li key={index}>
+                  <img src={item.book.small_thumbnail} />
+                  <h2>{item.book.title}</h2>
+                  <p>{this.truncateString(item.book.description)}</p>
+                  <p>Number of reading sessions - {item.readingsession_count}</p>
+
+                  <button>Start Reading Session</button>
+                </li>
               )
             })}
-          </section>
-        </main>
+          </ul>
+        </DashboardLayout>
       </>
     )
   }
