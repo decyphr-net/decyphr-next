@@ -38,10 +38,10 @@ export default function Dashboard() {
         && localStorage.getItem('readingsessions') 
         && localStorage.getItem('practicesessions')) 
     {
-      await setTranslations(getJson('library'))
-      await setLibraryItems(getJson('translations'))
-      await setReadingSessions(getJson('readingsessions'))
-      await setPracticeSessions(getJson('practicesessions'))
+      await setTranslations(JSON.parse(localStorage.getItem('library')))
+      await setLibraryItems(JSON.parse(localStorage.getItem('translations')))
+      await setReadingSessions(JSON.parse(localStorage.getItem('readingsessions')))
+      await setPracticeSessions(JSON.parse(localStorage.getItem('practicesessions')))
     } else {
       await api({
         method: 'GET',
