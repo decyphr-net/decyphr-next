@@ -1,0 +1,19 @@
+.layout {
+  
+  section {
+    padding-top: 2%;
+    padding-left: 22.5%;
+    padding-right: 2.5%;
+
+    .pageTitle {
+      margin: 0;
+      display: inline;
+      font-size: 2.25em;
+    }
+
+    .pageSubtitle {
+      display: block;
+      max-width: 75%;
+    }
+  }
+}
