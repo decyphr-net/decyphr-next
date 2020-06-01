@@ -1,15 +1,18 @@
 import React from 'react'
 import Head from 'next/head'
+import api from '../../utils/api'
 import DashboardLayout from '../../components/layout/dashboard'
 import styles from './library.module.scss'
 
 export default class Library extends React.Component {
   state = {
-    libraryItems: []
+    libraryItems: [],
+    searchResults: [],
+    errors: []
   }
 
   componentDidMount = async () => {
-    this.setState({"libraryItems": JSON.parse(localStorage.getItem('library'))})
+    this.setState({'libraryItems': JSON.parse(localStorage.getItem('library'))})
   }
 
   truncateString = string => {
@@ -18,6 +21,25 @@ export default class Library extends React.Component {
     }
 
     return string.slice(0, 150) + '...'
+  }
+
+  setSearchResults = data => {
+    this.setState({'searchResults': data})
+  }
+
+  setErrors = data => {
+    this.setState({'errors': data})
+  }
+
+  performBookSearch = text => {
+    api({
+      method: 'GET',
+      endpointName: 'bookSearch',
+      params: text,
+      setState: this.setSearchResults,
+      setErrors: this.setErrors,
+      authRequired: true
+    })
   }
 
   render () {
@@ -30,7 +52,7 @@ export default class Library extends React.Component {
         </Head>
 
         <DashboardLayout pageTitle="Library" pageSubtitle="Welcome to your Library. Here you can manage the books in your library or add more!">
-          <input className={styles.bookSearch} type="text" placeholder="Search for books by title" />
+          <input className={styles.bookSearch} type="text" placeholder="Search for books by title" onChange={e => this.performBookSearch(e.target.value)} />
           <ul className={styles.bookPanel}>
             {this.state.libraryItems.map((item, index) => {
               return (
@@ -41,7 +63,6 @@ export default class Library extends React.Component {
                   <p className={styles.subtext}>Number of reading sessions - {item.readingsession_count}</p>
                   <button>Options</button>
                   <button className={styles.startSession}>Start Reading Session</button>
-                  
                 </li>
               )
             })}
