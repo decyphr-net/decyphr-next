@@ -32,15 +32,15 @@ export default class Library extends React.Component {
         <DashboardLayout pageTitle="Library" pageSubtitle="Welcome to your Library. Here you can manage the books in your library or add more!">
           <ul className={styles.bookPanel}>
             {this.state.libraryItems.map((item, index) => {
-              console.log(item)
               return (
                 <li key={index}>
                   <img src={item.book.small_thumbnail} />
                   <h2>{item.book.title}</h2>
                   <p>{this.truncateString(item.book.description)}</p>
-                  <p>Number of reading sessions - {item.readingsession_count}</p>
-
-                  <button>Start Reading Session</button>
+                  <p className={styles.subtext}>Number of reading sessions - {item.readingsession_count}</p>
+                  <button>Options</button>
+                  <button className={styles.startSession}>Start Reading Session</button>
+                  
                 </li>
               )
             })}
