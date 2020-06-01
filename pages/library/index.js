@@ -30,6 +30,7 @@ export default class Library extends React.Component {
         </Head>
 
         <DashboardLayout pageTitle="Library" pageSubtitle="Welcome to your Library. Here you can manage the books in your library or add more!">
+          <input className={styles.bookSearch} type="text" placeholder="Search for books by title" />
           <ul className={styles.bookPanel}>
             {this.state.libraryItems.map((item, index) => {
               return (
