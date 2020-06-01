@@ -2,7 +2,8 @@ const urls = {
   login: 'auth/',
   register: 'users/',
   languages: 'languages/',
-  dashboard: 'dashboard/'
+  dashboard: 'dashboard/',
+  bookSearch: 'books/?name='
 }
 
 function getHeaders(authRequired) {
@@ -22,16 +23,20 @@ export default async function api({
   method,
   endpointName,
   data,
+  params,
+  pk,
   setState,
   setErrors,
   authRequired
 }) {
 
   const headers = getHeaders(authRequired)
-  console.log(headers)
+
+  let url = pk ? process.env.api + urls[endpointName] + pk + "/" : process.env.api + urls[endpointName];
+  url = params ? url + params : url;
 
   let response = await fetch(
-    process.env.api + urls[endpointName], {
+    url, {
       method: method,
       headers: headers,
       body: JSON.stringify(data)
