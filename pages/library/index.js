@@ -1,5 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
+import Router from 'next/router'
 import api from '../../utils/api'
 import DashboardLayout from '../../components/layout/dashboard'
 import styles from './library.module.scss'
@@ -19,8 +20,16 @@ export default class Library extends React.Component {
     if (string.length <= 150) {
       return string
     }
-
     return string.slice(0, 150) + '...'
+  }
+
+  proceedToSession = e => {
+    e.preventDefault()
+
+    Router.push({
+      pathname: '/reading-session',
+      query: { id: e.target.value },
+    })
   }
 
   setSearchResults = data => {
@@ -74,7 +83,7 @@ export default class Library extends React.Component {
                   <p>{this.truncateString(item.book.description)}</p>
                   <p className={styles.subtext}>Number of reading sessions - {item.readingsession_count}</p>
                   <button>Options</button>
-                  <button className={styles.startSession}>Start Reading Session</button>
+                  <button onClick={e => this.proceedToSession(e)} value={item.book.id} className={styles.startSession}>Start Reading Session</button>
                 </li>
               )
             })}
