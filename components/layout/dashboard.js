@@ -15,7 +15,7 @@ export default function Library({ children, pageTitle, pageSubtitle }) {
     <main className={styles.layout}>
       <Navigation />
       <section>
-        <h1 className={styles.pageTitle}>Library</h1>
+        <h1 className={styles.pageTitle}>{pageTitle}</h1>
         <p className={styles.pageSubtitle}>{pageSubtitle}</p>
       </section>
 
