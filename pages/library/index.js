@@ -52,7 +52,19 @@ export default class Library extends React.Component {
         </Head>
 
         <DashboardLayout pageTitle="Library" pageSubtitle="Welcome to your Library. Here you can manage the books in your library or add more!">
-          <input className={styles.bookSearch} type="text" placeholder="Search for books by title" onChange={e => this.performBookSearch(e.target.value)} />
+          <input
+            className={styles.bookSearch}
+            list="json-datalist"
+            type="text"
+            placeholder="Search for books by title"
+            onChange={e => this.performBookSearch(e.target.value)}
+          />
+          <button className={styles.primaryButton}>Add to library</button>
+          <datalist id="json-datalist">
+            {this.state.searchResults.map((result, index) => {
+              return <option key={index} value={result.title} />
+            })}
+          </datalist>
           <ul className={styles.bookPanel}>
             {this.state.libraryItems.map((item, index) => {
               return (

@@ -1,9 +1,31 @@
 .bookSearch {
   width: 50%;
-  padding: 13.75px 22px;
+  padding: 13.5px 22px;
   margin-left: 2.5%;
   box-sizing: border-box;
   font-size: 1.125em;
+}
+
+.primaryButton {
+  width: 20%;
+  padding: 15px 22px;
+  background: #4facfe;
+  text-decoration: none;
+  border: none;
+  box-sizing: border-box;
+  font-size: 1.125em;
+  color: #324B4D;
+  font-weight: 400;
+  transition: 0.3s;
+  font-weight: 500;
+  border: 1px solid #00f2fe;
+
+  &:hover {
+    cursor: pointer;
+    color: white;
+    background-color: #3D4756;
+    border: 1px solid #3D4756;
+  }
 }
 
 .bookPanel {
