@@ -1,5 +1,5 @@
 const urls = {
-  login: 'auth/',
+  login: 'users/login/',
   register: 'users/',
   languages: 'languages/',
   dashboard: 'dashboard/',
@@ -32,7 +32,7 @@ export default async function api({
 
   const headers = getHeaders(authRequired)
 
-  let url = pk ? process.env.api + urls[endpointName] + pk + "/" : process.env.api + urls[endpointName];
+  let url = pk ? process.env.API  + urls[endpointName] + pk + "/" : process.env.API + urls[endpointName];
   url = params ? url + params : url;
 
   let response = await fetch(
