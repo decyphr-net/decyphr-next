@@ -18,7 +18,7 @@ export default function Login() {
   })
 
   const handleSuccess = data => {
-    localStorage.setItem("token", data.token)
+    localStorage.setItem('token', data.auth_token)
     Router.push('/')
   }
 
