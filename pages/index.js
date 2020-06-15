@@ -5,7 +5,7 @@ import Footer from '../components/layout/Footer'
 
 export default function Home() {
   return (
-    <div className="container">
+    <div className="container-fluid">
       <Head>
         <title>Decyphr - Learn languages faster!</title>
         <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3/build/web/hack.css"></link>
