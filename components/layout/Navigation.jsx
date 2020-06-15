@@ -1,20 +1,19 @@
 import Link from 'next/link'
-import styles from './navigation.module.scss'
+import { Navbar, Nav } from 'react-bootstrap'
 
 export default function Navigation() {
   return (
-    <nav className={styles.navigation}>
-      <h2>Decyphr</h2>
-      <ul>
-        <li>
+    <Navbar bg="light" variant="light">
+      <Navbar.Brand href="#home">Decyphr</Navbar.Brand>
+      <Nav className="mr-auto">
+        <Nav.Link>
           <Link href="/library">
             <a>My Library</a>
           </Link>
-        </li>
-        <li><a href="">Practice</a></li>
-        <li><a href="">Profile</a></li>
-        <li><a href="">Logout</a></li>
-      </ul>
-    </nav>
+        </Nav.Link>
+        <Nav.Link href="#features">Features</Nav.Link>
+        <Nav.Link href="#pricing">Pricing</Nav.Link>
+      </Nav>
+    </Navbar>
   )
 }

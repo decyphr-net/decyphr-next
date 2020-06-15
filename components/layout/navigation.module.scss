@@ -1,18 +1,23 @@
 .navigation {
-  height: 100vh;
+  height: 100px;
   background-color: #4facfe;
   margin-top: 0;
-  width: 20%;
+  width: 100%;
   color: #FCFCD4;
   position: fixed;
+  float: left;
 
   h2 {
-    text-align: center;
     font-size: 2.25em;
   }
 
   ul {
     list-style: none;
+    
+    
+    li {
+      display: inline;
+    }
 
     a {
       text-decoration: none;
