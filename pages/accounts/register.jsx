@@ -93,7 +93,6 @@ export default function Register({ languages }) {
     <>
       <Head>
         <title>Sign up to Decyphr!</title>
-        <link rel="icon" href="/favicon.ico" />
         <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3/build/web/hack.css"></link>
       </Head>
 

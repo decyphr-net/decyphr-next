@@ -57,7 +57,6 @@ export default function Dashboard() {
     <>
       <Head>
         <title>Decyphr Dashboard</title>
-        <link rel="icon" href="/favicon.ico" />
         <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3/build/web/hack.css"></link>
       </Head>
 

@@ -52,7 +52,6 @@ export default function Login() {
     <>
       <Head>
         <title>Log into Decyphr!</title>
-        <link rel="icon" href="/favicon.ico" />
         <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3/build/web/hack.css"></link>
       </Head>
       <main className={styles.main}>

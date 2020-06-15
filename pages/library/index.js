@@ -56,7 +56,6 @@ export default class Library extends React.Component {
       <>
         <Head>
           <title>Your Library</title>
-          <link rel="icon" href="/favicon.ico" />
           <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3/build/web/hack.css"></link>
         </Head>
 

@@ -8,7 +8,6 @@ export default function Home() {
     <div className="container">
       <Head>
         <title>Decyphr - Learn languages faster!</title>
-        <link rel="icon" href="/favicon.ico" />
         <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3/build/web/hack.css"></link>
       </Head>
 
