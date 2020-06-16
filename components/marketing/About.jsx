@@ -1,5 +1,5 @@
 import { FormattedMessage } from 'react-intl'
-import { Media, Row, Col } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 import styles from './about.module.scss'
 
 export default function About() {
