@@ -16,12 +16,6 @@ export default function Header() {
       </p>
 
       <p className={styles.callToAction}>
-        <LinkButton location="#about">
-          <FormattedMessage
-            id="Index.header.discovermore"
-            defaultMessage="Find Out More!"
-            />
-        </LinkButton>
         <LinkButton location="/accounts/login">
           <FormattedMessage
             id="Index.header.calltoaction"
