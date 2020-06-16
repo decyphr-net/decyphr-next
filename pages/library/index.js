@@ -61,24 +61,37 @@ export default class Library extends React.Component {
         </Head>
 
         <DashboardLayout pageTitle="Library" pageSubtitle="Welcome to your Library. Here you can manage the books in your library or add more!">
-          <input
-            className={styles.bookSearch}
-            list="json-datalist"
-            type="text"
-            placeholder="Search for books by title"
-            onChange={e => this.performBookSearch(e.target.value)}
-          />
-          
-          <button className={styles.primaryButton}>Add to library</button>
-          <datalist id="json-datalist">
-            {this.state.searchResults.map((result, index) => {
-              return <option key={index} value={result.title} />
-            })}
-          </datalist>
+          <Row className="justify-content-md-center no-gutters">
+            <Col md={8}>
+              <Row className="no-gutters">
+                <Col sm={12} md={{ span: 4, offset: 2}}>
+                  <input
+                    className={styles.bookSearch}
+                    list="json-datalist"
+                    type="text"
+                    placeholder="Search for books by title"
+                    onChange={e => this.performBookSearch(e.target.value)}
+                  />
+
+                  <datalist id="json-datalist">
+                    {this.state.searchResults.map((result, index) => {
+                      return <option key={index} value={result.title} />
+                    })}
+                  </datalist>
+                </Col>
+                <Col sm={12} md={6}>
+                  <button className={styles.primaryButton}>Add to library</button>
+                </Col>  
+              </Row>
+              
+            </Col>
+                      
+          </Row>
+          <Row>
             {this.state.libraryItems.map((item, index) => {
               return (
                 <Row key={index} className="justify-content-md-center no-gutters">
-                  <Col md={{ span: 8, offset: 1 }}>
+                  <Col md={8}>
                     <Card className="flex-row flex-wrap">
                       <Row>
                         <Col sm={12} md={2}>
@@ -98,6 +111,7 @@ export default class Library extends React.Component {
                 </Row>
               )
             })}
+          </Row>
         </DashboardLayout>
       </>
     )
