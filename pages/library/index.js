@@ -1,6 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 import Router from 'next/router'
+import { Card, Row, Col } from 'react-bootstrap'
 import api from '../../utils/api'
 import DashboardLayout from '../../components/layout/dashboard'
 import styles from './library.module.scss'
@@ -67,26 +68,36 @@ export default class Library extends React.Component {
             placeholder="Search for books by title"
             onChange={e => this.performBookSearch(e.target.value)}
           />
+          
           <button className={styles.primaryButton}>Add to library</button>
           <datalist id="json-datalist">
             {this.state.searchResults.map((result, index) => {
               return <option key={index} value={result.title} />
             })}
           </datalist>
-          <ul className={styles.bookPanel}>
             {this.state.libraryItems.map((item, index) => {
               return (
-                <li key={index}>
-                  <img src={item.book.small_thumbnail} />
-                  <h2>{item.book.title}</h2>
-                  <p>{this.truncateString(item.book.description)}</p>
-                  <p className={styles.subtext}>Number of reading sessions - {item.readingsession_count}</p>
-                  <button>Options</button>
-                  <button onClick={e => this.proceedToSession(e)} value={item.book.id} className={styles.startSession}>Start Reading Session</button>
-                </li>
+                <Row key={index} className="justify-content-md-center no-gutters">
+                  <Col md={{ span: 8, offset: 1 }}>
+                    <Card className="flex-row flex-wrap">
+                      <Row>
+                        <Col sm={12} md={2}>
+                          <Card.Header>
+                            <img src={item.book.small_thumbnail} alt="" />
+                          </Card.Header>
+                        </Col>
+                        <Col sm={12} md={10}>
+                          <Card.Body>
+                            <Card.Title>{item.book.title}</Card.Title>
+                            <Card.Text>{this.truncateString(item.book.description)}</Card.Text>
+                          </Card.Body>
+                        </Col>
+                      </Row>
+                    </Card>
+                  </Col>
+                </Row>
               )
             })}
-          </ul>
         </DashboardLayout>
       </>
     )
