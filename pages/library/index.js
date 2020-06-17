@@ -61,10 +61,10 @@ export default class Library extends React.Component {
         </Head>
 
         <DashboardLayout pageTitle="Library" pageSubtitle="Welcome to your Library. Here you can manage the books in your library or add more!">
-          <Row className="justify-content-md-center no-gutters">
-            <Col md={8}>
+          <Row noGutters={true} className="justify-content-md-center">
+            <Col md={10}>
               <Row className="no-gutters">
-                <Col sm={12} md={{ span: 4, offset: 2}}>
+                <Col sm={12} md={{ span: 5, offset: 3}}>
                   <input
                     className={styles.bookSearch}
                     list="json-datalist"
@@ -79,20 +79,19 @@ export default class Library extends React.Component {
                     })}
                   </datalist>
                 </Col>
-                <Col sm={12} md={6}>
-                  <button className={styles.primaryButton}>Add to library</button>
+                <Col sm={12} md={4}>
+                  <button className={styles.primaryButton}>Add</button>
                 </Col>  
               </Row>
-              
-            </Col>
-                      
+            </Col>    
           </Row>
-          <Row>
+
+          <Row noGutters={true} className={styles.library}>
             {this.state.libraryItems.map((item, index) => {
               return (
                 <Row key={index} className="justify-content-md-center no-gutters">
                   <Col md={8}>
-                    <Card className="flex-row flex-wrap">
+                    <Card className={`${styles.bookPanel} flex-row flex-wrap`}>
                       <Row>
                         <Col sm={12} md={2}>
                           <Card.Header>
@@ -103,6 +102,9 @@ export default class Library extends React.Component {
                           <Card.Body>
                             <Card.Title>{item.book.title}</Card.Title>
                             <Card.Text>{this.truncateString(item.book.description)}</Card.Text>
+                            <button onClick={e => this.proceedToSession(e)} value={item.book.id} className={styles.startSession}>
+                              Start Reading Session
+                            </button>
                           </Card.Body>
                         </Col>
                       </Row>

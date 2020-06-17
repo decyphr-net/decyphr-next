@@ -6,7 +6,7 @@
 }
 
 .primaryButton {
-  width: 40%;
+  width: 30%;
   padding: 15px 22px;
   background: #4facfe;
   text-decoration: none;
@@ -27,75 +27,10 @@
   }
 }
 
-.bookPanel {
-  list-style-type: none;
-  width: 100%;
+.library {
+  margin-top: 2.5%;
 
-  li {
-    margin-top: 5%;;
-
-    h2 {
-      margin: 0;
-    }
-
-    img {
-      float: left;
-      margin: 0 15px 0 0;
-    }
-  
-    p {
-      padding: 0;
-      margin: 0;
-      max-width: 75%;
-    }
-
-    .subtext {
-      padding-top: 3.5%;
-    }
-
-    .startSession {
-      float: right;
-      width: 20%;
-      padding: 15px 22px;
-      background: #4facfe;
-      text-decoration: none;
-      border: none;
-      box-sizing: border-box;
-      font-size: 1.125em;
-      color: #324B4D;
-      font-weight: 400;
-      transition: 0.3s;
-      font-weight: 500;
-    
-      &:hover {
-        cursor: pointer;
-        color: white;
-        background-color: #3D4756;
-        border: 1px solid #3D4756;
-      }
-    }
-
-    button {
-      float: right;
-      width: 20%;
-      padding: 15px 22px;
-      background: #DAF3FF;
-      text-decoration: none;
-      border: none;
-      box-sizing: border-box;
-      font-size: 1.125em;
-      color: #324B4D;
-      font-weight: 400;
-      transition: 0.3s;
-      font-weight: 500;
-      border: 1px solid white;
-
-      &:hover {
-        cursor: pointer;
-        color: white;
-        background-color: #3D4756;
-        border: 1px solid #3D4756;
-      }
-    }
+  .bookPanel {
+    margin-bottom: 1.25%;
   }
 }
