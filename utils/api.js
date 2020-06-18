@@ -3,7 +3,8 @@ const urls = {
   register: 'users/',
   languages: 'languages/',
   dashboard: 'dashboard/',
-  bookSearch: 'books/?name='
+  bookSearch: 'books/?name=',
+  readingSession: 'reading-sessions/'
 }
 
 function getHeaders(authRequired) {
