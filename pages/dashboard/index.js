@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import Head from 'next/head'
 import Router from 'next/router'
 import api from '../../utils/api'
 import DashboardLayout from '../../components/layout/dashboard'
@@ -53,13 +52,7 @@ export default function Dashboard() {
   }
 
   return (
-    <>
-      <Head>
-        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3/build/web/hack.css"></link>
-      </Head>
-
-      <DashboardLayout title="Decyphr Dashboard" pageTitle="Dashboard" pageSubtitle="Welcome to your Decyphr Dashboard">
-      </DashboardLayout>
-    </>
+    <DashboardLayout title="Decyphr Dashboard" pageTitle="Dashboard" pageSubtitle="Welcome to your Decyphr Dashboard">
+    </DashboardLayout>
   )
 }

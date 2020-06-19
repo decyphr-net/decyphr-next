@@ -1,5 +1,4 @@
 import React from 'react'
-import Head from 'next/head'
 import Router from 'next/router'
 import { Row, Col, Button, Modal } from 'react-bootstrap'
 import api from '../../utils/api'
@@ -122,81 +121,75 @@ export default class Session extends React.Component {
 
   render() {
     return (
-      <>
-        <Head>
-          <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3/build/web/hack.css"></link>
-        </Head>
+      <DashboardLayout title="Reading Session" pageTitle={this.state.book.title} pageSubtitle="">
+        <Row noGutters={true} className="justify-content-md-center">
+          <Col xs={10}>
+            <Button
+              className={this.state.startButtonClass}
+              onClick={this.handleStartModalOpen}
+            >
+              Start Reading Now!
+            </Button>
 
-        <DashboardLayout title="Reading Session" pageTitle={this.state.book.title} pageSubtitle="">
-          <Row noGutters={true} className="justify-content-md-center">
-            <Col xs={10}>
-              <Button
-                className={this.state.startButtonClass}
-                onClick={this.handleStartModalOpen}
-              >
-                Start Reading Now!
-              </Button>
+            <Button
+              className={this.state.endSessionButtonClass}
+              onClick={this.handleEndModalOpen}
+            >
+              End Session
+            </Button>
+          </Col>
+        </Row>
 
-              <Button
-                className={this.state.endSessionButtonClass}
-                onClick={this.handleEndModalOpen}
-              >
-                End Session
-              </Button>
-            </Col>
-          </Row>
+        <Row noGutters={true} className="justify-content-md-center">
+          <Col xs={10}>
+            <p>{this.state.timerText}</p>
+          </Col>
+        </Row>
 
-          <Row noGutters={true} className="justify-content-md-center">
-            <Col xs={10}>
-              <p>{this.state.timerText}</p>
-            </Col>
-          </Row>
+        <Modal show={this.state.showStartModal} onHide={this.handleStartModalClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Start a new session?</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <p>How long would you like to read for?</p>
+            <input
+              type="number"
+              placeholder="Number of minutes"
+              onChange={e => this.setState({'durationModalInput': e.target.value})}
+            />
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={this.handleStartModalClose}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={this.startReadingSession}>
+              Start Session
+            </Button>
+          </Modal.Footer>
+        </Modal>
 
-          <Modal show={this.state.showStartModal} onHide={this.handleStartModalClose}>
-            <Modal.Header closeButton>
-              <Modal.Title>Start a new session?</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <p>How long would you like to read for?</p>
-              <input
-                type="number"
-                placeholder="Number of minutes"
-                onChange={e => this.setState({'durationModalInput': e.target.value})}
-              />
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={this.handleStartModalClose}>
-                Close
-              </Button>
-              <Button variant="primary" onClick={this.startReadingSession}>
-                Start Session
-              </Button>
-            </Modal.Footer>
-          </Modal>
-
-          <Modal show={this.state.showEndModal} onHide={this.handleEndModalClose}>
-            <Modal.Header closeButton>
-              <Modal.Title>Finish early?</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <p>How many pages did you read?</p>
-              <input
-                type="number"
-                placeholder="How many pages did you read?"
-                onChange={e => this.setState({'durationModalInput': e.target.value})}
-              />
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={this.handleEndModalClose}>
-                Close
-              </Button>
-              <Button variant="primary" onClick={this.startReadingSession}>
-                End Session
-              </Button>
-            </Modal.Footer>
-          </Modal>
-        </DashboardLayout>
-      </>
+        <Modal show={this.state.showEndModal} onHide={this.handleEndModalClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Finish early?</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <p>How many pages did you read?</p>
+            <input
+              type="number"
+              placeholder="How many pages did you read?"
+              onChange={e => this.setState({'durationModalInput': e.target.value})}
+            />
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={this.handleEndModalClose}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={this.startReadingSession}>
+              End Session
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </DashboardLayout>
     )
   }
 }
