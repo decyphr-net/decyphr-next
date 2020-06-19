@@ -124,11 +124,10 @@ export default class Session extends React.Component {
     return (
       <>
         <Head>
-          <title>Reading Session</title>
           <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3/build/web/hack.css"></link>
         </Head>
 
-        <DashboardLayout pageTitle={this.state.book.title} pageSubtitle="">
+        <DashboardLayout title="Reading Session" pageTitle={this.state.book.title} pageSubtitle="">
           <Row noGutters={true} className="justify-content-md-center">
             <Col xs={10}>
               <Button
