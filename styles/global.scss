@@ -1,3 +1,12 @@
+@font-face {
+  font-family: 'Hack';
+  src: url('/fonts/ttf/Hack-Bold.ttf');
+  src: url('/fonts/ttf/Hack-BoldItalic.ttf');
+  src: url('/fonts/ttf/Hack-Italic.ttf');
+  src: url('/fonts/ttf/Hack-Regular.ttf');
+  font-display: swap;
+}
+
 html,
 body {
   padding: 0;
