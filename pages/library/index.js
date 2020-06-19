@@ -56,11 +56,10 @@ export default class Library extends React.Component {
     return (
       <>
         <Head>
-          <title>Your Library</title>
           <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3/build/web/hack.css"></link>
         </Head>
 
-        <DashboardLayout pageTitle="Library" pageSubtitle="Welcome to your Library. Here you can manage the books in your library or add more!">
+        <DashboardLayout title="Your Library" pageTitle="Library" pageSubtitle="Welcome to your Library. Here you can manage the books in your library or add more!">
           <Row noGutters={true} className="justify-content-md-center">
             <Col md={10}>
               <Row className="no-gutters">
