@@ -1,4 +1,5 @@
-import {useState, useEffect}  from 'react'
+import { useState, useEffect }  from 'react'
+import { AppProps } from 'next/app'
 import {IntlProvider} from 'react-intl'
 import '../styles/global.scss'
 
@@ -6,11 +7,11 @@ import locale_en from '../langs/en.json'
 import locale_pt from '../langs/pt.json'
 
 const data = {
-  "en": locale_en,
-  "pt": locale_pt
+  'en': locale_en,
+  'pt': locale_pt
 };
 
-export default function App({ Component, pageProps }) {
+export default function App({ Component, pageProps }: AppProps) {
   const [language, setLanguage] = useState('en')
 
   useEffect(() => {

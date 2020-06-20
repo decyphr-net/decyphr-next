@@ -15,5 +15,9 @@
     "react-dom": "16.13.1",
     "react-intl": "^4.5.8",
     "sass": "^1.26.5"
+  },
+  "devDependencies": {
+    "@types/node": "^14.0.13",
+    "typescript": "^3.9.5"
   }
 }

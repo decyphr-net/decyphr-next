@@ -4,11 +4,12 @@ import { FormattedMessage } from 'react-intl'
 import Router from 'next/router'
 import Head from 'next/head'
 import Link from 'next/link'
+import { GetStaticProps } from 'next'
 import styles from './register.module.scss'
 import api from '../../utils/api'
 
-export async function getStaticProps() {
-  const response = await fetch(process.env.api + 'languages/')
+export const getStaticProps: GetStaticProps = async (context) => {
+  const response = await fetch(process.env.API + 'languages/')
   let data = await response.json()
   
   return {
@@ -34,7 +35,7 @@ export default function Register({ languages }) {
   }, [])
 
   const handleSuccess = data => {
-    localStorage.setItem('token', data.token)    
+    localStorage.setItem('token', data.auth_token)    
     Router.push('/dashboard')
   }
 
@@ -47,25 +48,10 @@ export default function Register({ languages }) {
     }
   }
 
-  const login = () => {
-    let data = {
-      'username': email,
-      'password': password
-    }
-
-    api({
-      method: 'POST',
-      endpointName: 'login',
-      data: data,
-      setState: handleSuccess,
-      setErrors: handleError
-    })
-  }
-
   const submitForm = e => {
     e.preventDefault()
 
-    let data = {
+    let data: any = {
       'username': username,
       'email': email,
       'password': password,
@@ -74,13 +60,7 @@ export default function Register({ languages }) {
       'language_preference': languagePreference
     }
 
-    api({
-      method: 'POST',
-      endpointName: 'register',
-      data: data,
-      setState: login,
-      setErrors: handleError
-    })
+    api('POST', 'register', handleSuccess, handleError, false, data)
   }
 
   const updateLanguagePreference = value => {
@@ -109,29 +89,9 @@ export default function Register({ languages }) {
           }
 
           <form>
-            <FormattedMessage id="Accounts.register.leftpanel.emailfield" defaultMessage="Email">
-              {
-                placeholder => (
-                  <input className={styles.formInput} placeholder={placeholder} name="email" type="text" onChange={e => setEmail(e.target.value)} />
-                )
-              }
-            </FormattedMessage>
-
-            <FormattedMessage id="Accounts.register.leftpanel.usernamefield" defaultMessage="Username">
-              {
-                placeholder => (
-                  <input className={styles.formInput} placeholder={placeholder} name="username" type="text" onChange={e => setUsername(e.target.value)} />
-                )
-              }
-            </FormattedMessage>
-
-            <FormattedMessage id="Accounts.register.leftpanel.passwordfield" defaultMessage="Password">
-              {
-                placeholder => (
-                  <input className={styles.formInput} placeholder={placeholder} name="password" type="password" onChange={e => setPassword(e.target.value)} />
-                )
-              }
-            </FormattedMessage>
+            <input className={styles.formInput} placeholder="Your Email" name="email" type="text" onChange={e => setEmail(e.target.value)} />
+            <input className={styles.formInput} placeholder="Your username" name="username" type="text" onChange={e => setUsername(e.target.value)} />
+            <input className={styles.formInput} placeholder="Your password" name="password" type="password" onChange={e => setPassword(e.target.value)} />
 
             <FormattedMessage id="Accounts.register.leftpanel.nativelanguage" defaultMessage="Native Language">
               {
