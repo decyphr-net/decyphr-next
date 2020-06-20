@@ -1,13 +1,13 @@
 const urls = {
   login: 'users/login/',
-  register: 'users/',
+  register: 'users/register/',
   languages: 'languages/',
   dashboard: 'dashboard/',
   bookSearch: 'books/?name=',
   readingSession: 'reading-sessions/'
 }
 
-function getHeaders(authRequired) {
+function getHeaders(authRequired: boolean) {
   if (authRequired) {
     return {
       'Content-type': 'application/json',
@@ -20,20 +20,20 @@ function getHeaders(authRequired) {
   }
 }
 
-export default async function api({
-  method,
-  endpointName,
-  data,
-  params,
-  pk,
-  setState,
-  setErrors,
-  authRequired
-}) {
-
+export default async function api(
+  method: string,
+  endpointName: string,
+  setState: ((_: any) => any),
+  setErrors: ((_: any) => any),
+  authRequired: boolean,
+  data?: {any: any},
+  params?: string,
+  pk?: string,
+) {
   const headers = getHeaders(authRequired)
+  let server = process.env.API
 
-  let url = pk ? process.env.API  + urls[endpointName] + pk + "/" : process.env.API + urls[endpointName];
+  let url = pk ? server + urls[endpointName] + pk + "/" : server + urls[endpointName];
   url = params ? url + params : url;
 
   let response = await fetch(
@@ -44,6 +44,8 @@ export default async function api({
   })
 
   let result = await response.json()
+
+  console.dir(result)
 
   if (response.status === 200 || response.status === 201) {
     setState(result)

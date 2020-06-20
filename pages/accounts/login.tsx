@@ -34,18 +34,12 @@ export default function Login() {
   const submitForm = e => {
     e.preventDefault()
 
-    let data = {
+    let data: any = {
       'username': email,
       'password': password
     }
 
-    api({
-      method: 'POST',
-      endpointName: 'login',
-      data: data,
-      setState: handleSuccess,
-      setErrors: handleError
-    })
+    api('POST', 'login', handleSuccess, handleError, false, data)
   }
 
   return (
@@ -94,21 +88,8 @@ export default function Login() {
           }
 
           <form>
-            <FormattedMessage id="Accounts.login.rightpanel.emailfield" defaultMessage="Email">
-              {
-                placeholder => (
-                  <input className={styles.formInput} placeholder={placeholder} name="email" type="text" onChange={e => setEmail(e.target.value)} />
-                )
-              }
-            </FormattedMessage>
-
-            <FormattedMessage id="Accounts.login.rightpanel.passwordfield" defaultMessage="Password">
-              {
-                placeholder => (
-                  <input className={styles.formInput} placeholder={placeholder} name="password" type="password" onChange={e => setPassword(e.target.value)} />
-                )
-              }
-            </FormattedMessage>
+                <input className={styles.formInput} placeholder="Your Email" name="email" type="text" onChange={e => setEmail(e.target.value)} />
+                <input className={styles.formInput} placeholder="Your Password" name="password" type="password" onChange={e => setPassword(e.target.value)} />
 
             <button className={styles.formButton} onClick={e => submitForm(e)}>
               <FormattedMessage

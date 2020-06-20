@@ -41,13 +41,7 @@ export default function Dashboard() {
       await setReadingSessions(JSON.parse(localStorage.getItem('readingsessions')))
       await setPracticeSessions(JSON.parse(localStorage.getItem('practicesessions')))
     } else {
-      await api({
-        method: 'GET',
-        endpointName: 'dashboard',
-        setState: setStateItems,
-        setErrors: setErrors,
-        authRequired: true
-      });
+      await api('GET', 'dashboard', setStateItems, setErrors, true)
     }
   }
 

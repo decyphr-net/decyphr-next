@@ -41,15 +41,8 @@ export default class Library extends React.Component {
     this.setState({'errors': data})
   }
 
-  performBookSearch = text => {
-    api({
-      method: 'GET',
-      endpointName: 'bookSearch',
-      params: text,
-      setState: this.setSearchResults,
-      setErrors: this.setErrors,
-      authRequired: true
-    })
+  performBookSearch = async (text) => {
+    await api('GET', 'bookSearch', this.setSearchResults, this.setErrors, true, undefined, text)
   }
 
   render () {
