@@ -2,12 +2,12 @@ import Head from 'next/head'
 import { Row, Col } from 'react-bootstrap'
 import withLocale from '../../i18n/hoc/withLocale'
 import useTranslation from '../../i18n/hooks/useTranslation'
-import LinkButton from '../../components/elements/Button'
+import Link from 'next/link'
 import Footer from '../../components/layout/Footer'
 import styles from './index.module.scss'
 
 const Home: React.FC = () => {
-  const { t } = useTranslation()
+  const { locale, t } = useTranslation()
 
   return (
     <div className="container-fluid">
@@ -26,9 +26,9 @@ const Home: React.FC = () => {
           </p>
 
           <p className={styles.callToAction}>
-            <LinkButton location="/accounts/login">
+            <Link href="/[lang]/accounts/login" as={`/${locale}/accounts/login`}>
               {t('Index.header.calltoaction')}
-            </LinkButton>
+            </Link>
           </p>
         </header>
         <article id="about" className={styles.about}>
