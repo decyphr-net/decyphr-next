@@ -1,6 +1,5 @@
 import fetch from 'node-fetch'
 import { useState, useEffect } from 'react'
-import { FormattedMessage } from 'react-intl'
 import Router from 'next/router'
 import Head from 'next/head'
 import Link from 'next/link'
@@ -79,9 +78,7 @@ export default function Register({ languages }) {
 
         <section className={styles.leftPanel}>
           <h2>
-            <FormattedMessage
-              id="Accounts.register.leftpanel.header"
-              defaultMessage="Sign up for Decyphr" />
+            Sign up for decyphr
           </h2>
 
           {errors.length > 0 &&
@@ -92,73 +89,43 @@ export default function Register({ languages }) {
             <input className={styles.formInput} placeholder="Your Email" name="email" type="text" onChange={e => setEmail(e.target.value)} />
             <input className={styles.formInput} placeholder="Your username" name="username" type="text" onChange={e => setUsername(e.target.value)} />
             <input className={styles.formInput} placeholder="Your password" name="password" type="password" onChange={e => setPassword(e.target.value)} />
+            
+            <select className={styles.formInput} onChange={e => setNativeLanguage(e.target.value)}>
+              <option value="" selected disabled hidden>Select your Native Language</option>
+              {languages.map((language, index) => {
+                return <option key={index} value={language.id}>{language.name}</option>
+              })}
+            </select>
 
-            <FormattedMessage id="Accounts.register.leftpanel.nativelanguage" defaultMessage="Native Language">
-              {
-                placeholder => (
-                  <select className={styles.formInput} onChange={e => setNativeLanguage(e.target.value)}>
-                    <option value="" selected disabled hidden>{placeholder}</option>
-                    {languages.map((language, index) => {
-                      return <option key={index} value={language.id}>{language.name}</option>
-                    })}
-                  </select>
-                )
-              }
-            </FormattedMessage>
+            <select className={styles.formInput} onChange={e => setNewLanguage(e.target.value)}>
+              <option value="" selected disabled hidden>Your Native Language</option>
+              {languages.map((language, index) => {
+                return <option key={index} value={language.id}>{language.name}</option>
+              })}
+            </select>
 
-            <FormattedMessage id="Accounts.register.leftpanel.newlanuagagefield" defaultMessage="New Language">
-              {
-                placeholder => (
-                  <select className={styles.formInput} onChange={e => setNewLanguage(e.target.value)}>
-                    <option value="" selected disabled hidden>{placeholder}</option>
-                    {languages.map((language, index) => {
-                      return <option key={index} value={language.id}>{language.name}</option>
-                    })}
-                  </select>
-                )
-              }
-            </FormattedMessage>
-
-            <FormattedMessage id="Accounts.register.leftpanel.lanuagepreferencefield" defaultMessage="Your Language Preference">
-              {
-                placeholder => (
-                  <select className={styles.formInput} onChange={e => updateLanguagePreference(e.target.value)}>
-                    <option value="" selected disabled hidden>{placeholder}</option>
-                    {languages.map((language, index) => {
-                      return <option key={index} value={language.id}>{language.name}</option>
-                    })}
-                  </select>
-                )
-              }
-            </FormattedMessage>
+            <select className={styles.formInput} onChange={e => updateLanguagePreference(e.target.value)}>
+              <option value="" selected disabled hidden>Site Language Preference</option>
+              {languages.map((language, index) => {
+                return <option key={index} value={language.id}>{language.name}</option>
+              })}
+            </select>
 
             <button className={styles.formButton} onClick={e => submitForm(e)}>
-              <FormattedMessage
-                id="Accounts.register.leftpanel.registerbutton"
-                defaultMessage="Register!" />
+              Register!
             </button>
           </form>
           
         </section>
         <section className={styles.rightPanel}>
-        <h1>
-            <FormattedMessage
-              id="Accounts.register.rightpanel.header"
-              defaultMessage="Welcome to Decyphr" />
+          <h1>
+            Welcome to Decyphr
           </h1>
-          <p>
-            <FormattedMessage
-              id="Accounts.register.rightpanel.helpparagraph"
-              defaultMessage="You are just a simple form away from your new learning experience!" />
-            </p>
-          <p>
-            <FormattedMessage
-              id="Accounts.register.rightpanel.loginprompt"
-              defaultMessage="If you already have an account you can "/>
+          <p>You are just a simple form away from your new learning experience!</p>
+          <p>If you already have an account you can 
             <Link href="/accounts/login">
-              <a><FormattedMessage id="Accounts.register.rightpanel.loginlink" defaultMessage="log in here!"/></a>
+              <a>log in here!</a>
             </Link>
-            
             </p>
         </section>
       </main>

@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { FormattedMessage } from 'react-intl'
 import Router from 'next/router'
 import Head from 'next/head'
 import Link from 'next/link'
@@ -49,39 +48,19 @@ export default function Login() {
       </Head>
       <main className={styles.main}>
         <section className={styles.leftPanel}>
-          <h1>
-            <FormattedMessage
-              id="Accounts.login.leftpanel.header"
-              defaultMessage="Welcome to Decyphr" />
-          </h1>
-          <p>
-            <FormattedMessage
-              id="Accounts.login.leftpanel.helpparagraph"
-              defaultMessage="Just login to get back to your learning." />
-            </p>
-          <p>
-            <FormattedMessage
-              id="Accounts.login.leftpanel.signupprompt"
-              defaultMessage="If you don't have an account yet then you can " />
-
+          <h1>Welcome to Decyphr</h1>
+          <p>Just login to get back to your learning.</p>
+          <p>If you don't have an account yet then you can 
             <Link href="/accounts/register">
-              <a><FormattedMessage id="Accounts.login.leftpanel.signuplink" defaultMessage="sign up for one here!"/></a>
+              <a>sign up for one here!</a>
             </Link>
 
             </p>
-          <p>
-            <FormattedMessage
-              id="Accounts.login.leftPanel.forgotpasswordprompt"
-              defaultMessage="Or, if you have forgotten your password, click here!" />
-          </p>
+          <p>Or, if you have forgotten your password, click here!</p>
         </section>
 
         <section className={styles.rightPanel}>
-          <h2>
-            <FormattedMessage
-              id="Accounts.login.rightpanel.header"
-              defaultMessage="Login To Decyphr" />
-            </h2>
+          <h2>Login To Decyphr</h2>
 
           {errors.length > 0 &&
             <p>{errors}</p>
@@ -92,9 +71,7 @@ export default function Login() {
                 <input className={styles.formInput} placeholder="Your Password" name="password" type="password" onChange={e => setPassword(e.target.value)} />
 
             <button className={styles.formButton} onClick={e => submitForm(e)}>
-              <FormattedMessage
-                id="Accounts.login.rightpanel.loginbutton"
-                defaultMessage="Login!" />
+              Login!
             </button>
           </form>
           
