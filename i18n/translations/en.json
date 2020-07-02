@@ -22,6 +22,7 @@
     "Accounts.login.rightpanel.emailfield": "Email",
     "Accounts.login.rightpanel.passwordfield": "Password",
     "Accounts.login.rightpanel.loginbutton": "Login",
+    "Accounts.register.title": "Sign up to Decyphr",
     "Accounts.register.leftpanel.header": "Sign up for Decyphr",
     "Accounts.register.leftpanel.emailfield": "Email",
     "Accounts.register.leftpanel.usernamefield": "Username",

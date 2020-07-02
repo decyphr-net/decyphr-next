@@ -3,29 +3,28 @@ import { useState, useEffect } from 'react'
 import Router from 'next/router'
 import Head from 'next/head'
 import Link from 'next/link'
-import { GetStaticProps } from 'next'
+import useSWR from 'swr'
+import withLocale from '../../../i18n/hoc/withLocale'
+import useTranslation from '../../../i18n/hooks/useTranslation'
 import styles from './register.module.scss'
-import api from '../../utils/api'
+import api from '../../../utils/api'
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  const response = await fetch(process.env.API + 'languages/')
-  let data = await response.json()
+const Register: React.FC = () => {
+  const { locale, t } = useTranslation()
+  const [email, setEmail] = useState<string>('')
+  const [username, setUsername] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
+  const [nativeLanguage, setNativeLanguage] = useState<string>('')
+  const [newLanguage, setNewLanguage] = useState<string>('')
+  const [languagePreference, setLanguagePreference] = useState<string>('')
+  const [languages, setLanguages] = useState<Array<any>>([])
+  const [errors, setErrors] = useState<Array<any>>([])
+
+  const fetcher = url => fetch(url)
+    .then(r => r.json())
+    .then(data => setLanguages(data))
   
-  return {
-    props: {
-      languages: data
-    }
-  }
-}
-
-export default function Register({ languages }) {
-  const [email, setEmail] = useState('')
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const [nativeLanguage, setNativeLanguage] = useState('')
-  const [newLanguage, setNewLanguage] = useState('')
-  const [languagePreference, setLanguagePreference] = useState('')
-  const [errors, setErrors] = useState([])
+  const { data } = useSWR(process.env.API + 'languages/', fetcher)
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
@@ -71,14 +70,14 @@ export default function Register({ languages }) {
   return(
     <>
       <Head>
-        <title>Sign up to Decyphr!</title>
+        <title>{t('Accounts.register.title')}</title>
       </Head>
 
       <main className={styles.main}>
 
         <section className={styles.leftPanel}>
           <h2>
-            Sign up for decyphr
+            {t('Accounts.register.leftpanel.header')}
           </h2>
 
           {errors.length > 0 &&
@@ -86,45 +85,45 @@ export default function Register({ languages }) {
           }
 
           <form>
-            <input className={styles.formInput} placeholder="Your Email" name="email" type="text" onChange={e => setEmail(e.target.value)} />
-            <input className={styles.formInput} placeholder="Your username" name="username" type="text" onChange={e => setUsername(e.target.value)} />
-            <input className={styles.formInput} placeholder="Your password" name="password" type="password" onChange={e => setPassword(e.target.value)} />
+            <input className={styles.formInput} placeholder={t('Accounts.register.leftpanel.emailfield')} name="email" type="text" onChange={e => setEmail(e.target.value)} />
+            <input className={styles.formInput} placeholder={t('Accounts.register.leftpanel.usernamefield')} name="username" type="text" onChange={e => setUsername(e.target.value)} />
+            <input className={styles.formInput} placeholder={t('Accounts.register.leftpanel.passwordfield')} name="password" type="password" onChange={e => setPassword(e.target.value)} />
             
             <select className={styles.formInput} onChange={e => setNativeLanguage(e.target.value)}>
-              <option value="" selected disabled hidden>Select your Native Language</option>
+              <option value="" selected disabled hidden>{t('Accounts.register.leftpanel.nativelanguage')}</option>
               {languages.map((language, index) => {
                 return <option key={index} value={language.id}>{language.name}</option>
               })}
             </select>
 
             <select className={styles.formInput} onChange={e => setNewLanguage(e.target.value)}>
-              <option value="" selected disabled hidden>Your Native Language</option>
+              <option value="" selected disabled hidden>{t('Accounts.register.leftpanel.newlanuagagefield')}</option>
               {languages.map((language, index) => {
                 return <option key={index} value={language.id}>{language.name}</option>
               })}
             </select>
 
             <select className={styles.formInput} onChange={e => updateLanguagePreference(e.target.value)}>
-              <option value="" selected disabled hidden>Site Language Preference</option>
+              <option value="" selected disabled hidden>{t('Accounts.register.leftpanel.lanuagepreferencefield')}</option>
               {languages.map((language, index) => {
                 return <option key={index} value={language.id}>{language.name}</option>
               })}
             </select>
 
             <button className={styles.formButton} onClick={e => submitForm(e)}>
-              Register!
+              {t('Accounts.register.leftpanel.registerbutton')}
             </button>
           </form>
           
         </section>
         <section className={styles.rightPanel}>
           <h1>
-            Welcome to Decyphr
+            {t('Accounts.register.rightpanel.header')}
           </h1>
-          <p>You are just a simple form away from your new learning experience!</p>
-          <p>If you already have an account you can 
-            <Link href="/accounts/login">
-              <a>log in here!</a>
+          <p>{t('Accounts.register.rightpanel.helpparagraph')}</p>
+          <p>{t('Accounts.register.rightpanel.loginprompt')}
+            <Link href="/[lang]/accounts/login" as={`/${locale}/accounts/login`}>
+              <a>{t('Accounts.register.rightpanel.loginlink')}</a>
             </Link>
             </p>
         </section>
@@ -132,3 +131,5 @@ export default function Register({ languages }) {
     </>
   )
 }
+
+export default withLocale(Register)

@@ -3,7 +3,7 @@ import Router from 'next/router'
 import Head from 'next/head'
 import Link from 'next/link'
 import styles from './login.module.scss'
-import api from '../../utils/api'
+import api from '../../../utils/api'
 
 export default function Login() {
   const [email, setEmail] = useState('')
