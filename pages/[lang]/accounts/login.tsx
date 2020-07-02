@@ -2,13 +2,16 @@ import { useState, useEffect } from 'react'
 import Router from 'next/router'
 import Head from 'next/head'
 import Link from 'next/link'
+import withLocale from '../../../i18n/hoc/withLocale'
+import useTranslation from '../../../i18n/hooks/useTranslation'
 import styles from './login.module.scss'
 import api from '../../../utils/api'
 
-export default function Login() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [errors, setErrors] = useState([])
+const Login: React.FC = () => {
+  const { locale, t } = useTranslation()
+  const [email, setEmail] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
+  const [errors, setErrors] = useState<Array<any>>([])
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
@@ -44,34 +47,34 @@ export default function Login() {
   return (
     <>
       <Head>
-        <title>Log into Decyphr!</title>
+        <title>{t('Accounts.login.title')}</title>
       </Head>
       <main className={styles.main}>
         <section className={styles.leftPanel}>
-          <h1>Welcome to Decyphr</h1>
-          <p>Just login to get back to your learning.</p>
-          <p>If you don't have an account yet then you can 
-            <Link href="/accounts/register">
-              <a>sign up for one here!</a>
+          <h1>{t('Accounts.login.leftpanel.header')}</h1>
+          <p>{t('Accounts.login.leftpanel.helpparagraph')}</p>
+          <p>{t('Accounts.login.leftpanel.signupprompt')}{' '}
+            <Link href="/[lang]/accounts/register"  as={`/${locale}/accounts/register`}>
+              <a>{t('Accounts.login.leftpanel.signuplink')}</a>
             </Link>
 
             </p>
-          <p>Or, if you have forgotten your password, click here!</p>
+          <p>{t('Accounts.login.leftPanel.forgotpasswordprompt')}</p>
         </section>
 
         <section className={styles.rightPanel}>
-          <h2>Login To Decyphr</h2>
+          <h2>{t('Accounts.login.rightpanel.header')}</h2>
 
           {errors.length > 0 &&
             <p>{errors}</p>
           }
 
           <form>
-                <input className={styles.formInput} placeholder="Your Email" name="email" type="text" onChange={e => setEmail(e.target.value)} />
-                <input className={styles.formInput} placeholder="Your Password" name="password" type="password" onChange={e => setPassword(e.target.value)} />
+                <input className={styles.formInput} placeholder={t('Accounts.login.rightpanel.emailfield')} name="email" type="text" onChange={e => setEmail(e.target.value)} />
+                <input className={styles.formInput} placeholder={t('Accounts.login.rightpanel.passwordfield')} name="password" type="password" onChange={e => setPassword(e.target.value)} />
 
             <button className={styles.formButton} onClick={e => submitForm(e)}>
-              Login!
+              {t('Accounts.login.rightpanel.loginbutton')}
             </button>
           </form>
           
@@ -80,3 +83,5 @@ export default function Login() {
     </>
   )
 }
+
+export default withLocale(Login)
