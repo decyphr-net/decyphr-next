@@ -1,8 +1,9 @@
 export const defaultLocale = 'en' as const
 
-export const locales = ['en', 'pt']
+export const locales = ['en', 'pt', 'es']
 
 export const languageNames = {
   en: 'English',
-  pt: 'Portuguese'
+  pt: 'Portuguese',
+  es: 'Spanish'
 }
