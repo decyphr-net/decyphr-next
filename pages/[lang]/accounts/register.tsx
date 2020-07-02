@@ -121,7 +121,7 @@ const Register: React.FC = () => {
             {t('Accounts.register.rightpanel.header')}
           </h1>
           <p>{t('Accounts.register.rightpanel.helpparagraph')}</p>
-          <p>{t('Accounts.register.rightpanel.loginprompt')}
+          <p>{t('Accounts.register.rightpanel.loginprompt')}{' '}
             <Link href="/[lang]/accounts/login" as={`/${locale}/accounts/login`}>
               <a>{t('Accounts.register.rightpanel.loginlink')}</a>
             </Link>
