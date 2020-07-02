@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react'
 import Router from 'next/router'
-import api from '../../utils/api'
-import DashboardLayout from '../../components/layout/dashboard'
+import withLocale from '../../../i18n/hoc/withLocale'
+import useTranslation from '../../../i18n/hooks/useTranslation'
+import api from '../../../utils/api'
+import DashboardLayout from '../../../components/layout/dashboard'
 
-export default function Dashboard() {
+const Dashboard: React.FC = () => {
+  const { locale, t } = useTranslation()
   const [translations, setTranslations] = useState([]);
   const [libraryItems, setLibraryItems] = useState([]);
   const [readingSessions, setReadingSessions] = useState([]);
@@ -11,10 +14,12 @@ export default function Dashboard() {
   const [errors, setErrors] = useState([]);
 
   useEffect(() => {
-    if (!localStorage.getItem('token')) {
-      Router.push('/accounts/login')
+    if (!window.localStorage.getItem('token')) {
+      Router.push('/[lang]/accounts/login', `/${locale}/accounts/login`)
     }
+  })
 
+  useEffect(() => {
     getDashboardData()
   }, [])
 
@@ -50,3 +55,5 @@ export default function Dashboard() {
     </DashboardLayout>
   )
 }
+
+export default withLocale(Dashboard)

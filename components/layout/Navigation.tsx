@@ -1,13 +1,18 @@
+import React from 'react'
 import Link from 'next/link'
 import { Navbar, Nav } from 'react-bootstrap'
+import withLocale from '../../i18n/hoc/withLocale'
+import useTranslation from '../../i18n/hooks/useTranslation'
 
-export default function Navigation() {
+const Navigation: React.FC = () => {
+  const { locale, t } = useTranslation()
+
   return (
     <Navbar bg="light" variant="light">
       <Navbar.Brand href="#home">Decyphr</Navbar.Brand>
       <Nav className="mr-auto">
         <Nav.Link>
-          <Link href="/library">
+          <Link href="/[lang]/library" as={`/${locale}/library`}>
             <a>My Library</a>
           </Link>
         </Nav.Link>
@@ -17,3 +22,5 @@ export default function Navigation() {
     </Navbar>
   )
 }
+
+export default withLocale(Navigation)

@@ -2,8 +2,8 @@ import React from 'react'
 import Head from 'next/head'
 import Router from 'next/router'
 import { Card, Row, Col } from 'react-bootstrap'
-import api from '../../utils/api'
-import DashboardLayout from '../../components/layout/dashboard'
+import api from '../../../utils/api'
+import DashboardLayout from '../../../components/layout/dashboard'
 import styles from './library.module.scss'
 
 export default class Library extends React.Component {

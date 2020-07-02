@@ -28,13 +28,13 @@ const Register: React.FC = () => {
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
-      Router.push('/')
+      Router.push('/[lang]/dashboard', `/${locale}/dashboard`)
     }
   }, [])
 
   const handleSuccess = data => {
     localStorage.setItem('token', data.auth_token)    
-    Router.push('/dashboard')
+    Router.push('/[lang]/dashboard', `/${locale}/dashboard`)
   }
 
   const handleError = data => {
