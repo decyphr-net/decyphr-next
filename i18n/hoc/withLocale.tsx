@@ -1,6 +1,5 @@
 import React from 'react'
 import { NextPage } from 'next'
-import Error from 'next/error'
 import { getDisplayName } from 'next/dist/next-server/lib/utils'
 import { isLocale, Locale } from '../types'
 import { LocaleProvider } from '../context/LocaleContext'
@@ -11,9 +10,6 @@ interface LangProps {
 
 export default (WrappedPage: NextPage<any>) => {
   const WithLocale: NextPage<any, LangProps> = ({ locale, ...pageProps}) => {
-    if (!locale) {
-      return <Error statusCode={404} />
-    }
 
     return (
       <LocaleProvider lang={locale}>

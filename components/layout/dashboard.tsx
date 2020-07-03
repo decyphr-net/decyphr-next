@@ -7,12 +7,6 @@ import styles from './dashboard.module.scss'
 
 export default function Library({ children, title, pageTitle, pageSubtitle }) {
 
-  useEffect(() => {
-    if (!window.localStorage.getItem('token')) {
-      Router.push('/accounts/login')
-    }
-  })
-
   return (
     <>
       <Head>

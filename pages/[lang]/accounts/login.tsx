@@ -15,13 +15,13 @@ const Login: React.FC = () => {
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
-      Router.push('/dashboard')
+      Router.push('/[lang]/dashboard', `/${locale}/dashboard`)
     }
   })
 
   const handleSuccess = data => {
     localStorage.setItem('token', data.auth_token)
-    Router.push('/')
+    Router.push('/[lang]/dashboard', `/${locale}/dashboard`)
   }
 
   const handleError = data => {
@@ -70,8 +70,8 @@ const Login: React.FC = () => {
           }
 
           <form>
-                <input className={styles.formInput} placeholder={t('Accounts.login.rightpanel.emailfield')} name="email" type="text" onChange={e => setEmail(e.target.value)} />
-                <input className={styles.formInput} placeholder={t('Accounts.login.rightpanel.passwordfield')} name="password" type="password" onChange={e => setPassword(e.target.value)} />
+            <input className={styles.formInput} placeholder={t('Accounts.login.rightpanel.emailfield')} name="email" type="text" onChange={e => setEmail(e.target.value)} />
+            <input className={styles.formInput} placeholder={t('Accounts.login.rightpanel.passwordfield')} name="password" type="password" onChange={e => setPassword(e.target.value)} />
 
             <button className={styles.formButton} onClick={e => submitForm(e)}>
               {t('Accounts.login.rightpanel.loginbutton')}
