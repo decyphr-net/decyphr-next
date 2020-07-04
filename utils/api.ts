@@ -20,13 +20,13 @@ function getHeaders(authRequired: boolean) {
   }
 }
 
-export default async function api(
+export default async function api<T>(
   method: string,
   endpointName: string,
   setState: ((_: any) => any),
   setErrors: ((_: any) => any),
   authRequired: boolean,
-  data?: {any: any},
+  data?: T,
   params?: string,
   pk?: string,
 ) {
