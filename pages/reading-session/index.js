@@ -4,192 +4,142 @@ import { Row, Col, Button, Modal } from 'react-bootstrap'
 import api from '../../utils/api'
 import DashboardLayout from '../../components/layout/dashboard'
 
-export default class Session extends React.Component {
-  state = {
-    libraryItem: 0,
-    book: {},
-    showStartModal: false,
-    showEndModal: false,
-    durationModalInput: '',
-    sessionStatus: 'N',
-    minutes: 0,
-    seconds: 0,
-    timerText: '',
-    errors: {}
-  }
+export default function Session() {
+  const [libraryItem, setLibraryItem] = React.useState(0)
+  const [book, setBook] = React.useState({})
+  const [showStartModal, setShowStartModal] = React.useState(false)
+  const [showEndModal, setShowEndModal] = React.useState(false)
+  const [durationModalInput, setDurationModalInput] = React.useState('')
+  const [sessionStatus, setSessionStatus] = React.useState('N')
+  const [seconds, setSeconds] = React.useState(0)
+  const [minutes, setMinutes] = React.useState(0)
+  const [isRunning, setIsRunning] = React.useState(false)
+  const [errors, setErrors] = React.useState({})
 
-  /**
-   * Get the query parameter from the from the URL so that it will be
-   * accessible on this page, which will allow us to determine which book
-   * is being read
-   * 
-   * @param {*} query
-   */
-  static getInitialProps({ query }) {
+  const getInitialProps = ({ query }) => {
     return { query }
   }
 
-  componentDidMount = () => {
+  React.useEffect(() => {
     let readingSessions = JSON.parse(localStorage.getItem('library'))
     let session = readingSessions.find(session => {
       return session.book.id == Router.query['id']
     })
-    this.setState({'libraryItem': session.id})
-    this.setState({'book': session.book})
-  }
 
-  updateTimerText = () => {
-    if (this.state.seconds < 10) {
-      this.setState({
-        'timerText': `Time Remaining: ${this.state.minutes}:0${this.state.seconds}`
-      })
-    } else {
-      this.setState({
-        'timerText': `Time Remaining: ${this.state.minutes}:${this.state.seconds}`
-      })
-    }
-  }
-
-  countdown = () => {
-    this.interval = setInterval(() => {
-      const { seconds, minutes } = this.state;
-
-      if (seconds > 0) {
-        this.setState(({ seconds }) => ({
-          seconds: seconds - 1
-        }))
-      }
-
+    setLibraryItem(session.id)
+    setBook(session.book)
+  }, [])
+  
+  React.useEffect(() => {
+    if (isRunning) {
+      const timer = seconds > 0 && setInterval(() => setSeconds(seconds - 1), 1000);
       if (seconds === 0) {
-        if (minutes === 0) {
-          clearInterval(this.interval)
-        } else {
-          this.setState(({ minutes }) => ({
-            minutes: minutes - 1,
-            seconds: 59
-          }))
-        }
+        setMinutes(minutes - 1)
+        setSeconds(59)
       }
-      this.updateTimerText();
-    }, 1000);
+      return () => clearInterval(timer);
+    }
+    
+  }, [seconds, minutes, isRunning]);
+
+  const handleStartModalOpen = () => setShowStartModal(true)
+  const handleEndModalOpen = () => setShowEndModal(true)
+  const handleStartModalClose = () => setShowStartModal(false)
+  const handleEndModalClose = () => setShowEndModal(false)
+
+  const handleSessionCreation = data => {
+    setMinutes(data.duration.split(":")[1] - 1)
+    setSeconds(59)
+    handleStartModalClose()
+    setIsRunning(true)
   }
 
-  /**
-   * Once the information has successfully come back from the API, we'll just
-   * update some items of state on the page.
-   * 
-   * The first thing that we'll do is parse the duration value and split it
-   * into minutes and seconds and add them to the component state.
-   * 
-   * Then we'll just close the modal start the countdown.
-   * 
-   * @param {obj} data 
-   */
-  handleSessionCreation = data => {
-    this.setState({'minutes': data.duration.split(":")[1] - 1 })
-    this.setState({'seconds': 59})
-    this.handleModalClose()
-    this.countdown()
-  }
-
-  handleErrors = data => {
+  const handleErrors = data => {
     console.dir(data)
   }
 
-  startReadingSession = () => {
+  const startReadingSession = () => {
     let data = {
-      'library_item': this.state.libraryItem,
+      'library_item': libraryItem,
       'pages': 0.0,
-      'duration': `00:${this.state.durationModalInput}:00`,
+      'duration': `00:${durationModalInput}:00`,
       'status': 'I'
     }
 
-    api({
-      method: 'POST',
-      endpointName: 'readingSession',
-      data: data,
-      setState: this.handleSessionCreation,
-      setErrors: this.handleErrors,
-      authRequired: true
-    })
+    api('POST', 'readingSession', handleSessionCreation, handleErrors, true, data)
   }
 
-  handleStartModalOpen = () => this.setState({'showStartModal': true})
-  handleEndModalOpen = () => this.setState({'showEndModal': true})
-  handleStartModalClose = () => this.setState({'showStartModal': false})
-  handleEndModalClose = () => this.setState({'showEndModal': false})
+  return (
+    <DashboardLayout title="Reading Session" pageTitle={book.title} pageSubtitle="">
+      <Row noGutters={true} className="justify-content-md-center">
+        <Col xs={10}>
+          <Button
+            className="btn"
+            onClick={handleStartModalOpen}
+          >
+            Start Reading Now!
+          </Button>
 
-  render() {
-    return (
-      <DashboardLayout title="Reading Session" pageTitle={this.state.book.title} pageSubtitle="">
-        <Row noGutters={true} className="justify-content-md-center">
-          <Col xs={10}>
-            <Button
-              className={this.state.startButtonClass}
-              onClick={this.handleStartModalOpen}
-            >
-              Start Reading Now!
-            </Button>
+          <Button
+            className="btn"
+            onClick={handleEndModalOpen}
+          >
+            End Session
+          </Button>
+        </Col>
+      </Row>
 
-            <Button
-              className={this.state.endSessionButtonClass}
-              onClick={this.handleEndModalOpen}
-            >
-              End Session
-            </Button>
-          </Col>
-        </Row>
+      <Row noGutters={true} className="justify-content-md-center">
+        <Col xs={10}>
+          <div className="App">
+            <div>Countdown: {minutes}:{seconds}</div>
+          </div>
+        </Col>
+      </Row>
 
-        <Row noGutters={true} className="justify-content-md-center">
-          <Col xs={10}>
-            <p>{this.state.timerText}</p>
-          </Col>
-        </Row>
+      <Modal show={showStartModal} onHide={handleStartModalClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Start a new session?</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>How long would you like to read for?</p>
+          <input
+            type="number"
+            placeholder="Number of minutes"
+            onChange={e => setDurationModalInput(e.target.value)}
+          />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleStartModalClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={startReadingSession}>
+            Start Session
+          </Button>
+        </Modal.Footer>
+      </Modal>
 
-        <Modal show={this.state.showStartModal} onHide={this.handleStartModalClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Start a new session?</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <p>How long would you like to read for?</p>
-            <input
-              type="number"
-              placeholder="Number of minutes"
-              onChange={e => this.setState({'durationModalInput': e.target.value})}
-            />
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={this.handleStartModalClose}>
-              Close
-            </Button>
-            <Button variant="primary" onClick={this.startReadingSession}>
-              Start Session
-            </Button>
-          </Modal.Footer>
-        </Modal>
-
-        <Modal show={this.state.showEndModal} onHide={this.handleEndModalClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Finish early?</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <p>How many pages did you read?</p>
-            <input
-              type="number"
-              placeholder="How many pages did you read?"
-              onChange={e => this.setState({'durationModalInput': e.target.value})}
-            />
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={this.handleEndModalClose}>
-              Close
-            </Button>
-            <Button variant="primary" onClick={this.startReadingSession}>
-              End Session
-            </Button>
-          </Modal.Footer>
-        </Modal>
-      </DashboardLayout>
-    )
-  }
+      <Modal show={showEndModal} onHide={handleEndModalClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Finish early?</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>How many pages did you read?</p>
+          <input
+            type="number"
+            placeholder="How many pages did you read?"
+            onChange={e => setDurationModalInput(e.target.value)}
+          />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleEndModalClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={startReadingSession}>
+            End Session
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </DashboardLayout>
+  )
 }
