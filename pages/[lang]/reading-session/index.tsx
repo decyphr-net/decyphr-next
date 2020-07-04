@@ -1,8 +1,8 @@
 import React from 'react'
 import Router from 'next/router'
 import { Row, Col, Button, Modal } from 'react-bootstrap'
-import api from '../../utils/api'
-import DashboardLayout from '../../components/layout/dashboard'
+import api from '../../../utils/api'
+import DashboardLayout from '../../../components/layout/dashboard'
 import { SessionData } from './types'
 
 const ReadingSession: React.FC = () => {
