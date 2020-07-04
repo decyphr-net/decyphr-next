@@ -3,8 +3,9 @@ import Router from 'next/router'
 import { Row, Col, Button, Modal } from 'react-bootstrap'
 import api from '../../utils/api'
 import DashboardLayout from '../../components/layout/dashboard'
+import { SessionData } from './types'
 
-export default function Session() {
+const ReadingSession: React.FC = () => {
   const [libraryItem, setLibraryItem] = React.useState(0)
   const [book, setBook] = React.useState({})
   const [showStartModal, setShowStartModal] = React.useState(false)
@@ -32,15 +33,15 @@ export default function Session() {
   
   React.useEffect(() => {
     if (isRunning) {
-      const timer = seconds > 0 && setInterval(() => setSeconds(seconds - 1), 1000);
+      const timer = seconds > 0 && setInterval(() => setSeconds(seconds - 1), 1000)
       if (seconds === 0) {
         setMinutes(minutes - 1)
         setSeconds(59)
       }
-      return () => clearInterval(timer);
+      return () => clearInterval(timer)
     }
     
-  }, [seconds, minutes, isRunning]);
+  }, [seconds, minutes, isRunning])
 
   const handleStartModalOpen = () => setShowStartModal(true)
   const handleEndModalOpen = () => setShowEndModal(true)
@@ -48,7 +49,8 @@ export default function Session() {
   const handleEndModalClose = () => setShowEndModal(false)
 
   const handleSessionCreation = data => {
-    setMinutes(data.duration.split(":")[1] - 1)
+    let sessionData: SessionData = data;
+    setMinutes(+sessionData.duration.split(":")[1] - 1)
     setSeconds(59)
     handleStartModalClose()
     setIsRunning(true)
@@ -59,18 +61,18 @@ export default function Session() {
   }
 
   const startReadingSession = () => {
-    let data = {
-      'library_item': libraryItem,
-      'pages': 0.0,
-      'duration': `00:${durationModalInput}:00`,
-      'status': 'I'
+    let data: SessionData = {
+      library_item: libraryItem,
+      pages: 0.0,
+      duration: `00:${durationModalInput}:00`,
+      status: 'I'
     }
 
     api('POST', 'readingSession', handleSessionCreation, handleErrors, true, data)
   }
 
   return (
-    <DashboardLayout title="Reading Session" pageTitle={book.title} pageSubtitle="">
+    <DashboardLayout title="Reading Session" pageTitle="" pageSubtitle="">
       <Row noGutters={true} className="justify-content-md-center">
         <Col xs={10}>
           <Button
@@ -143,3 +145,5 @@ export default function Session() {
     </DashboardLayout>
   )
 }
+
+export default ReadingSession
