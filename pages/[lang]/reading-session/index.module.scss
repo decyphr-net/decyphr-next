@@ -1,0 +1,28 @@
+.translateText {
+  width: 100%;
+  padding: 12.5px 22px;
+  margin: 10px 5px;
+  box-sizing: border-box;
+  font-size: 1.125em;
+}
+
+.translateButton {
+  width: 30%;
+  padding: 15px 22px;
+  margin: 10px 5px;
+  background: #00f2fe;
+  text-decoration: none;
+  border: none;
+  box-sizing: border-box;
+  font-size: 1.125em;
+  color: #324B4D;
+  font-weight: 400;
+  transition: 0.3s;
+  font-weight: 500;
+
+  &:hover {
+    cursor: pointer;
+    color: white;
+    background-color: #324B4D;
+  }
+}
