@@ -2,11 +2,21 @@ import React from 'react'
 import Router from 'next/router'
 import { Row, Col, Button, Modal } from 'react-bootstrap'
 import BootstrapTable from 'react-bootstrap-table-next'
+import paginationFactory from 'react-bootstrap-table2-paginator'
+import ReactAudioPlayer from 'react-audio-player'
 import api from '../../../utils/api'
 import DashboardLayout from '../../../components/layout/dashboard'
 import Book from '../../../types/book'
 import { SessionData } from './types'
 import styles from './index.module.scss'
+
+function audioFormatter(cell, row) {
+  return (
+    <ReactAudioPlayer preload="none" controls>
+      <source src={ cell } />
+    </ReactAudioPlayer>
+  )
+}
 
 const columns = [{
   dataField: 'source_text',
@@ -16,7 +26,8 @@ const columns = [{
   text: 'Translated Text'
 }, {
   dataField: 'audio_file_path',
-  text: 'Audio Clip'
+  text: 'Audio Clip',
+  formatter: audioFormatter
 }]
 
 const ReadingSession: React.FC = () => {
@@ -48,6 +59,25 @@ const ReadingSession: React.FC = () => {
   const [textToTranslate, setTextToTranslate] = React.useState<string>('')
   const [translations, setTranslations] = React.useState<Array<any>>([])
   const [errors, setErrors] = React.useState({})
+
+  const options = {  
+    page: 2,
+    sizePerPageList: [ {
+      text: '5', value: 5
+    }, {
+      text: '10', value: 10
+    }, {
+      text: 'All', value: translations.length 
+    }],
+    sizePerPage: 5,
+    pageStartIndex: 0,
+    paginationSize: 3,
+    prePage: 'Prev',
+    nextPage: 'Next',
+    firstPage: 'First',
+    lastPage: 'Last',
+    paginationPosition: 'top'
+  }
 
   /**
    * Get the book ID from the query parameters
@@ -172,8 +202,7 @@ const ReadingSession: React.FC = () => {
   }
 
   const handleTranslation = data => {
-    console.log(data)
-    setTranslations(translations.concat(data))
+    setTranslations([data, ...translations])
   }
 
   return (
@@ -223,7 +252,7 @@ const ReadingSession: React.FC = () => {
 
       <Row noGutters={true} className="justify-content-md-center">
         <Col md={10}>
-          <BootstrapTable keyField='id' data={ translations } columns={ columns } />
+          <BootstrapTable keyField='id' data={ translations } columns={ columns } pagination={ paginationFactory(options) }/>
         </Col>
       </Row>
 
