@@ -192,7 +192,6 @@ const ReadingSession: React.FC = () => {
   }
 
   const submitText = () => {
-    console.log(sessionId)
     let data: any = {
       text_to_be_translated: textToTranslate,
       session: sessionId

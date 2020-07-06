@@ -46,8 +46,6 @@ export default async function api<T>(
 
   let result = await response.json()
 
-  console.dir(result)
-
   if (response.status === 200 || response.status === 201) {
     setState(result)
   } else {
