@@ -11,7 +11,10 @@
     "next": "9.3.5",
     "next-fonts": "^1.2.0",
     "react": "16.13.1",
+    "react-audio-player": "^0.13.0",
     "react-bootstrap": "^1.0.1",
+    "react-bootstrap-table-next": "^4.0.3",
+    "react-bootstrap-table2-paginator": "^2.1.2",
     "react-dom": "16.13.1",
     "sass": "^1.26.5",
     "swr": "^0.2.3"
