@@ -6,6 +6,8 @@ import withLocale from '../../../i18n/hoc/withLocale'
 import useTranslation from '../../../i18n/hooks/useTranslation'
 import styles from './login.module.scss'
 import api from '../../../utils/api'
+import { Button } from '../../../components/elements/Button'
+import { TextInput } from '../../../components/elements/Input'
 
 const Login: React.FC = () => {
   const { locale, t } = useTranslation()
@@ -54,7 +56,7 @@ const Login: React.FC = () => {
           <h1>{t('Accounts.login.leftpanel.header')}</h1>
           <p>{t('Accounts.login.leftpanel.helpparagraph')}</p>
           <p>{t('Accounts.login.leftpanel.signupprompt')}{' '}
-            <Link href="/[lang]/accounts/register"  as={`/${locale}/accounts/register`}>
+            <Link href="/[lang]/accounts/register" as={`/${locale}/accounts/register`}>
               <a>{t('Accounts.login.leftpanel.signuplink')}</a>
             </Link>
 
@@ -70,12 +72,25 @@ const Login: React.FC = () => {
           }
 
           <form>
-            <input className={styles.formInput} placeholder={t('Accounts.login.rightpanel.emailfield')} name="email" type="text" onChange={e => setEmail(e.target.value)} />
-            <input className={styles.formInput} placeholder={t('Accounts.login.rightpanel.passwordfield')} name="password" type="password" onChange={e => setPassword(e.target.value)} />
+            <TextInput
+              placeholder={t('Accounts.login.rightpanel.emailfield')}
+              label={t('Accounts.login.rightpanel.emailfield')}
+              name="email"
+              type="text"
+              onChangeHandler={setEmail}
+            />
+            <TextInput
+              placeholder={t('Accounts.login.rightpanel.passwordfield')}
+              label={t('Accounts.login.rightpanel.passwordfield')}
+              name="password"
+              type="password"
+              onChangeHandler={setPassword}
+            />
 
-            <button className={styles.formButton} onClick={e => submitForm(e)}>
-              {t('Accounts.login.rightpanel.loginbutton')}
-            </button>
+            <Button
+              text={t('Accounts.login.rightpanel.loginbutton')}
+              onClickHandler={submitForm}
+            />
           </form>
           
         </section>

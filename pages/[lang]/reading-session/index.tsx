@@ -1,6 +1,6 @@
 import React from 'react'
 import Router from 'next/router'
-import { Row, Col, Button, Modal } from 'react-bootstrap'
+import { Row, Col, Modal } from 'react-bootstrap'
 import BootstrapTable from 'react-bootstrap-table-next'
 import paginationFactory from 'react-bootstrap-table2-paginator'
 import ReactAudioPlayer from 'react-audio-player'
@@ -11,6 +11,8 @@ import DashboardLayout from '../../../components/layout/dashboard'
 import Book from '../../../types/book'
 import { SessionData } from './types'
 import styles from './index.module.scss'
+import { TextInput } from '../../../components/elements/Input'
+import { Button } from '../../../components/elements/Button'
 
 function audioFormatter(cell, row) {
   return (
@@ -219,36 +221,33 @@ const ReadingSession: React.FC = () => {
           </div>
           <Button
             className={startButtonClass}
-            onClick={handleStartModalOpen}
-          >
-            {t('Readingsession.header.timer.starttimer')}
-          </Button>
+            text={t('Readingsession.header.timer.starttimer')}
+            onClickHandler={handleStartModalOpen}
+          />
 
           <Button
             className={endButtonClass}
-            onClick={handleEndModalOpen}
-          >
-            {t('Readingsession.header.timer.endtimer')}
-          </Button>
+            text={t('Readingsession.header.timer.endtimer')}
+            onClickHandler={handleEndModalOpen}
+          />
         </Col>
       </Row>
 
       <Row noGutters={true} className="justify-content-md-center">
         <Col md={{ offset: 4, span: 4}}>
-          <input
-            className={styles.translateText}
-            type="text"
+          <TextInput
             placeholder={t('Readingsession.translate.input.placeholder')}
-            onChange={e => setTextToTranslate(e.target.value)}
+            label={t('Readingsession.translate.input.placeholder')}
+            name="text-to-translate"
+            type="text"
+            onChangeHandler={setTextToTranslate}
           />
         </Col>
         <Col md={4}>
           <Button
-            className={styles.translateButton}
-            onClick={submitText}
-          >
-            {t('Readingsession.translate.input.button')}
-          </Button>
+            text={t('Readingsession.translate.input.button')}
+            onClickHandler={submitText}
+          />
         </Col>
       </Row>
 
@@ -264,19 +263,23 @@ const ReadingSession: React.FC = () => {
         </Modal.Header>
         <Modal.Body>
           <p>{t('Readingsession.modal.startsession.paragraph')}</p>
-          <input
-            type="number"
+          <TextInput
             placeholder={t('Readingsession.modal.startsession.input.placeholder')}
-            onChange={e => setDurationModalInput(e.target.value)}
+            label={t('Readingsession.modal.startsession.input.placeholder')}
+            name="duration"
+            type="number"
+            onChangeHandler={setDurationModalInput}
           />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleStartModalClose}>
-            {t('Readingsession.modal.startsession.footer.close')}
-          </Button>
-          <Button variant="primary" onClick={startReadingSession}>
-            {t('Readingsession.modal.startsession.footer.start')}
-          </Button>
+          <Button
+            text={t('Readingsession.modal.startsession.footer.close')}
+            onChangeHandler={handleStartModalClose}
+          />
+          <Button
+            text={t('Readingsession.modal.startsession.footer.start')}
+            onClickHandler={startReadingSession}
+          />
         </Modal.Footer>
       </Modal>
 
@@ -286,19 +289,23 @@ const ReadingSession: React.FC = () => {
         </Modal.Header>
         <Modal.Body>
           <p>{t('Readingsession.modal.endsession.paragraph')}</p>
-          <input
-            type="number"
+          <TextInput
             placeholder={t('Readingsession.modal.endsession.input.placeholder')}
-            onChange={e => setPagesModalInput(+e.target.value)}
+            label={t('Readingsession.modal.endsession.input.placeholder')}
+            name="pages"
+            type="number"
+            onChangeHandler={setPagesModalInput}
           />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleEndModalClose}>
-            {t('Readingsession.modal.endsession.footer.close')}
-          </Button>
-          <Button variant="primary" onClick={endReadingSession}>
-            {t('Readingsession.modal.endsession.footer.end')}
-          </Button>
+          <Button
+            text={t('Readingsession.modal.endsession.footer.close')}
+            onClickHandler={handleEndModalClose}
+          />
+          <Button
+            text={t('Readingsession.modal.endsession.footer.end')} 
+            onClickHandler={endReadingSession}
+          />
         </Modal.Footer>
       </Modal>
     </DashboardLayout>
