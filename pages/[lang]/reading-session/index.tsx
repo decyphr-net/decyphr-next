@@ -4,6 +4,8 @@ import { Row, Col, Button, Modal } from 'react-bootstrap'
 import BootstrapTable from 'react-bootstrap-table-next'
 import paginationFactory from 'react-bootstrap-table2-paginator'
 import ReactAudioPlayer from 'react-audio-player'
+import withLocale from '../../../i18n/hoc/withLocale'
+import useTranslation from '../../../i18n/hooks/useTranslation'
 import api from '../../../utils/api'
 import DashboardLayout from '../../../components/layout/dashboard'
 import Book from '../../../types/book'
@@ -18,19 +20,8 @@ function audioFormatter(cell, row) {
   )
 }
 
-const columns = [{
-  dataField: 'source_text',
-  text: 'Original Text'
-}, {
-  dataField: 'translated_text',
-  text: 'Translated Text'
-}, {
-  dataField: 'audio_file_path',
-  text: 'Audio Clip',
-  formatter: audioFormatter
-}]
-
 const ReadingSession: React.FC = () => {
+  const { locale, t } = useTranslation()
   const [libraryItem, setLibraryItem] = React.useState<number>(0)
   const [sessionId, setSessionId] = React.useState<number>(0)
   const [book, setBook] = React.useState<Book>({
@@ -78,6 +69,18 @@ const ReadingSession: React.FC = () => {
     lastPage: 'Last',
     paginationPosition: 'top'
   }
+
+  const columns = [{
+    dataField: 'source_text',
+    text: t('Readingsession.translate.table.headerone')
+  }, {
+    dataField: 'translated_text',
+    text: t('Readingsession.translate.table.headertwo')
+  }, {
+    dataField: 'audio_file_path',
+    text: t('Readingsession.translate.table.headerthree'),
+    formatter: audioFormatter
+  }]
 
   /**
    * Get the book ID from the query parameters
@@ -212,20 +215,20 @@ const ReadingSession: React.FC = () => {
         </Col>
         <Col xs={9}>
           <div className={timerClassName}>
-            <div>Time Remaining: {minutes}:{seconds}</div>
+            {t('Readingsession.header.timer.timeremaining')}{' '}{minutes}:{seconds}
           </div>
           <Button
             className={startButtonClass}
             onClick={handleStartModalOpen}
           >
-            Start Reading Now!
+            {t('Readingsession.header.timer.starttimer')}
           </Button>
 
           <Button
             className={endButtonClass}
             onClick={handleEndModalOpen}
           >
-            End Session
+            {t('Readingsession.header.timer.endtimer')}
           </Button>
         </Col>
       </Row>
@@ -235,7 +238,7 @@ const ReadingSession: React.FC = () => {
           <input
             className={styles.translateText}
             type="text"
-            placeholder="Translate text"
+            placeholder={t('Readingsession.translate.input.placeholder')}
             onChange={e => setTextToTranslate(e.target.value)}
           />
         </Col>
@@ -244,7 +247,7 @@ const ReadingSession: React.FC = () => {
             className={styles.translateButton}
             onClick={submitText}
           >
-            Translate
+            {t('Readingsession.translate.input.button')}
           </Button>
         </Col>
       </Row>
@@ -257,44 +260,44 @@ const ReadingSession: React.FC = () => {
 
       <Modal show={showStartModal} onHide={handleStartModalClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Start a new session?</Modal.Title>
+          <Modal.Title>{t('Readingsession.modal.startsession.header')}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>How long would you like to read for?</p>
+          <p>{t('Readingsession.modal.startsession.paragraph')}</p>
           <input
             type="number"
-            placeholder="Number of minutes"
+            placeholder={t('Readingsession.modal.startsession.input.placeholder')}
             onChange={e => setDurationModalInput(e.target.value)}
           />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleStartModalClose}>
-            Close
+            {t('Readingsession.modal.startsession.footer.close')}
           </Button>
           <Button variant="primary" onClick={startReadingSession}>
-            Start Session
+            {t('Readingsession.modal.startsession.footer.start')}
           </Button>
         </Modal.Footer>
       </Modal>
 
       <Modal show={showEndModal} onHide={handleEndModalClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Finish early?</Modal.Title>
+          <Modal.Title>{t('Readingsession.modal.endsession.header')}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>How many pages did you read?</p>
+          <p>{t('Readingsession.modal.endsession.paragraph')}</p>
           <input
             type="number"
-            placeholder="How many pages did you read?"
+            placeholder={t('Readingsession.modal.endsession.input.placeholder')}
             onChange={e => setPagesModalInput(+e.target.value)}
           />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleEndModalClose}>
-            Close
+            {t('Readingsession.modal.endsession.footer.close')}
           </Button>
           <Button variant="primary" onClick={endReadingSession}>
-            End Session
+            {t('Readingsession.modal.endsession.footer.end')}
           </Button>
         </Modal.Footer>
       </Modal>
@@ -302,4 +305,4 @@ const ReadingSession: React.FC = () => {
   )
 }
 
-export default ReadingSession
+export default withLocale(ReadingSession)

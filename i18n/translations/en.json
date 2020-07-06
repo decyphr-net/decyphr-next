@@ -34,5 +34,25 @@
     "Accounts.register.rightpanel.header": "Welcome to Decyphr",
     "Accounts.register.rightpanel.helpparagraph": "You are just a simple form away from your new learning experience!",
     "Accounts.register.rightpanel.loginprompt": "If you already have an account you can",
-    "Accounts.register.rightpanel.loginlink": "log in here!"
+    "Accounts.register.rightpanel.loginlink": "log in here!",
+    "Readingsession.header.timer.timeremaining": "Time Remaining:",
+    "Readingsession.header.timer.starttimer": "Start Reading Now!",
+    "Readingsession.header.timer.endtimer": "End Session",
+    "Readingsession.translate.input.placeholder": "Translate text",
+    "Readingsession.translate.input.button": "Translate",
+    "Readingsession.translate.table.headerone": "Original Text",
+    "Readingsession.translate.table.headertwo": "Translated Text",
+    "Readingsession.translate.table.headerthree": "Audio Clip",
+    "Readingsession.modal.startsession.header": "Start a new session?",
+    "Readingsession.modal.startsession.paragraph": "How long would you like to read for?",
+    "Readingsession.modal.startsession.input.placeholder": "Number in minutes",
+    "Readingsession.modal.startsession.footer.close": "Close",
+    "Readingsession.modal.startsession.footer.start": "Start Session",
+    "Readingsession.modal.endsession.header": "Finish Early?",
+    "Readingsession.modal.endsession.paragraph": "How many pages did you read?",
+    "Readingsession.modal.endsession.input.placeholder": "Number of pages",
+    "Readingsession.modal.endsession.footer.close": "Close",
+    "Readingsession.modal.endsession.footer.end": "End Session"
+    
+
 }
