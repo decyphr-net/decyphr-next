@@ -8,6 +8,8 @@ import withLocale from '../../../i18n/hoc/withLocale'
 import useTranslation from '../../../i18n/hooks/useTranslation'
 import styles from './register.module.scss'
 import api from '../../../utils/api'
+import { Button } from '../../../components/elements/Button'
+import { TextInput, SelectInput } from '../../../components/elements/Input'
 
 const Register: React.FC = () => {
   const { locale, t } = useTranslation()
@@ -85,34 +87,50 @@ const Register: React.FC = () => {
           }
 
           <form>
-            <input className={styles.formInput} placeholder={t('Accounts.register.leftpanel.emailfield')} name="email" type="text" onChange={e => setEmail(e.target.value)} />
-            <input className={styles.formInput} placeholder={t('Accounts.register.leftpanel.usernamefield')} name="username" type="text" onChange={e => setUsername(e.target.value)} />
-            <input className={styles.formInput} placeholder={t('Accounts.register.leftpanel.passwordfield')} name="password" type="password" onChange={e => setPassword(e.target.value)} />
-            
-            <select className={styles.formInput} onChange={e => setNativeLanguage(e.target.value)}>
-              <option value="" selected disabled hidden>{t('Accounts.register.leftpanel.nativelanguage')}</option>
-              {languages.map((language, index) => {
-                return <option key={index} value={language.id}>{language.name}</option>
-              })}
-            </select>
+            <TextInput
+              placeholder={t('Accounts.register.leftpanel.emailfield')}
+              label={t('Accounts.register.leftpanel.emailfield')}
+              name="email"
+              type="text"
+              onChangeHandler={setEmail}
+            />
+            <TextInput
+              placeholder={t('Accounts.register.leftpanel.usernamefield')}
+              label={t('Accounts.register.leftpanel.usernamefield')}
+              name="username"
+              type="text"
+              onChangeHandler={setUsername}
+            />
+            <TextInput
+              placeholder={t('Accounts.register.leftpanel.passwordfield')}
+              label={t('Accounts.register.leftpanel.passwordfield')}
+              name="password"
+              type="password"
+              onChangeHandler={setPassword}
+            />
+            <SelectInput
+              placeholder={t('Accounts.register.leftpanel.nativelanguage')}
+              label={t('Accounts.register.leftpanel.nativelanguage')}
+              dataset={languages}
+              onChangeHandler={setNativeLanguage}
+            />
+            <SelectInput
+              placeholder={t('Accounts.register.leftpanel.newlanuagagefield')}
+              label={t('Accounts.register.leftpanel.newlanuagagefield')}
+              dataset={languages}
+              onChangeHandler={setNewLanguage}
+            />
+            <SelectInput
+              placeholder={t('Accounts.register.leftpanel.lanuagepreferencefield')}
+              label={t('Accounts.register.leftpanel.lanuagepreferencefield')}
+              dataset={languages}
+              onChangeHandler={updateLanguagePreference}
+            />
 
-            <select className={styles.formInput} onChange={e => setNewLanguage(e.target.value)}>
-              <option value="" selected disabled hidden>{t('Accounts.register.leftpanel.newlanuagagefield')}</option>
-              {languages.map((language, index) => {
-                return <option key={index} value={language.id}>{language.name}</option>
-              })}
-            </select>
-
-            <select className={styles.formInput} onChange={e => updateLanguagePreference(e.target.value)}>
-              <option value="" selected disabled hidden>{t('Accounts.register.leftpanel.lanuagepreferencefield')}</option>
-              {languages.map((language, index) => {
-                return <option key={index} value={language.id}>{language.name}</option>
-              })}
-            </select>
-
-            <button className={styles.formButton} onClick={e => submitForm(e)}>
-              {t('Accounts.register.leftpanel.registerbutton')}
-            </button>
+            <Button
+              text={t('Accounts.register.leftpanel.registerbutton')}
+              onClickHandler={submitForm}
+            />
           </form>
           
         </section>

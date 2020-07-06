@@ -1,5 +1,4 @@
 import React from 'react'
-import Head from 'next/head'
 import Router from 'next/router'
 import { Card, Row, Col } from 'react-bootstrap'
 import withLocale from '../../../i18n/hoc/withLocale'
