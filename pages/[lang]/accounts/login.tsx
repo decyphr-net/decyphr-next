@@ -1,13 +1,17 @@
 import { useState, useEffect } from 'react'
 import Router from 'next/router'
-import Head from 'next/head'
-import Link from 'next/link'
 import withLocale from '../../../i18n/hoc/withLocale'
 import useTranslation from '../../../i18n/hooks/useTranslation'
-import styles from './login.module.scss'
+import styles from './accounts.module.scss'
 import api from '../../../utils/api'
+import { AccountsLayout } from '../../../components/layout/accounts'
 import { Button } from '../../../components/elements/Button'
 import { TextInput } from '../../../components/elements/Input'
+
+const LayoutProps = {
+  title: 'Login',
+  isInverted: true
+}
 
 const Login: React.FC = () => {
   const { locale, t } = useTranslation()
@@ -47,55 +51,32 @@ const Login: React.FC = () => {
   }
 
   return (
-    <>
-      <Head>
-        <title>{t('Accounts.login.title')}</title>
-      </Head>
-      <main className={styles.main}>
-        <section className={styles.leftPanel}>
-          <h1>{t('Accounts.login.leftpanel.header')}</h1>
-          <p>{t('Accounts.login.leftpanel.helpparagraph')}</p>
-          <p>{t('Accounts.login.leftpanel.signupprompt')}{' '}
-            <Link href="/[lang]/accounts/register" as={`/${locale}/accounts/register`}>
-              <a>{t('Accounts.login.leftpanel.signuplink')}</a>
-            </Link>
-
-            </p>
-          <p>{t('Accounts.login.leftPanel.forgotpasswordprompt')}</p>
-        </section>
-
-        <section className={styles.rightPanel}>
-          <h2>{t('Accounts.login.rightpanel.header')}</h2>
-
-          {errors.length > 0 &&
-            <p>{errors}</p>
-          }
-
-          <form>
-            <TextInput
-              placeholder={t('Accounts.login.rightpanel.emailfield')}
-              label={t('Accounts.login.rightpanel.emailfield')}
-              name="email"
-              type="text"
-              onChangeHandler={setEmail}
-            />
-            <TextInput
-              placeholder={t('Accounts.login.rightpanel.passwordfield')}
-              label={t('Accounts.login.rightpanel.passwordfield')}
-              name="password"
-              type="password"
-              onChangeHandler={setPassword}
-            />
-
-            <Button
-              text={t('Accounts.login.rightpanel.loginbutton')}
-              onClickHandler={submitForm}
-            />
-          </form>
-          
-        </section>
-      </main>
-    </>
+    <AccountsLayout {...LayoutProps}>
+      {errors.length > 0 &&
+        <p>{errors}</p>
+      }
+      
+      <form className={styles.form}>
+        <TextInput
+          placeholder={t('Accounts.login.rightpanel.emailfield')}
+          label={t('Accounts.login.rightpanel.emailfield')}
+          name="email"
+          type="text"
+          onChangeHandler={setEmail}
+        />
+        <TextInput
+          placeholder={t('Accounts.login.rightpanel.passwordfield')}
+          label={t('Accounts.login.rightpanel.passwordfield')}
+          name="password"
+          type="password"
+          onChangeHandler={setPassword}
+        />
+        <Button
+          text={t('Accounts.login.rightpanel.loginbutton')}
+          onClickHandler={submitForm}
+        />
+      </form>
+    </AccountsLayout>
   )
 }
 
