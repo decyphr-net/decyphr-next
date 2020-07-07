@@ -1,5 +1,3 @@
-import { useEffect } from 'react'
-import Router from 'next/router'
 import Head from 'next/head'
 import { Row, Col } from 'react-bootstrap'
 import Navigation from '../../components/layout/Navigation'
