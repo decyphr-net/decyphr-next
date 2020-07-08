@@ -10,7 +10,6 @@ import api from '../../../utils/api'
 import DashboardLayout from '../../../components/layout/dashboard'
 import Book from '../../../types/book'
 import { SessionData } from './types'
-import styles from './index.module.scss'
 import { TextInput } from '../../../components/elements/Input'
 import { Button } from '../../../components/elements/Button'
 

@@ -5,7 +5,8 @@ const urls = {
   dashboard: 'dashboard/',
   bookSearch: 'books/?name=',
   readingSession: 'reading-sessions/',
-  translate: 'translate/'
+  translate: 'translate/',
+  practiceSessions: 'practice-sessions/sessions/'
 }
 
 function getHeaders(authRequired: boolean) {

@@ -16,7 +16,11 @@ const Navigation: React.FC = () => {
             <a>My Library</a>
           </Link>
         </Nav.Link>
-        <Nav.Link href="#features">Features</Nav.Link>
+        <Nav.Link href="#features">
+          <Link href="/[lang]/practice" as={`/${locale}/practice`}>
+            <a>Practice</a>
+          </Link>
+        </Nav.Link>
         <Nav.Link href="#pricing">Pricing</Nav.Link>
       </Nav>
     </Navbar>
