@@ -1,4 +1,5 @@
 import React from 'react'
+import { Row, Col } from 'react-bootstrap'
 import withLocale from '../../../i18n/hoc/withLocale'
 import useTranslation from '../../../i18n/hooks/useTranslation'
 import DashboardLayout from '../../../components/layout/dashboard'
@@ -23,10 +24,14 @@ const PracticeSession: React.FC = () => {
       pageTitle={t('Practicesession.page.header')}
       pageSubtitle={t('Practicesession.page.subheading')}
     >
-      <Button
-        text={t('Practicesession.session.startbutton')}
-        onClickHandler={startSession}
-      />
+      <Row noGutters={true} className="justify-content-md-center">
+        <Col className={"text-center"}>
+          <Button
+            text={t('Practicesession.session.startbutton')}
+            onClickHandler={startSession}
+          />
+        </Col>
+      </Row>
     </DashboardLayout>
   )
 }
