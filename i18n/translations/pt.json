@@ -55,5 +55,6 @@
   "Readingsession.modal.endsession.footer.end": "Encerrar Sessão",
   "Practicesession.page.title": "Sessão de treino",
   "Practicesession.page.header": "Sessão de treino",
-  "Practicesession.page.subheading": "Coloque seu aprendizado à prova"
+  "Practicesession.page.subheading": "Coloque seu aprendizado à prova",
+  "Practicesession.session.startbutton": "Iniciar sessão"
 }
