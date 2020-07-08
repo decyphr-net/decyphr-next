@@ -52,7 +52,9 @@
     "Readingsession.modal.endsession.paragraph": "How many pages did you read?",
     "Readingsession.modal.endsession.input.placeholder": "Number of pages",
     "Readingsession.modal.endsession.footer.close": "Close",
-    "Readingsession.modal.endsession.footer.end": "End Session"
-    
-
+    "Readingsession.modal.endsession.footer.end": "End Session",
+    "Practicesession.page.title": "Practice Session",
+    "Practicesession.page.header": "Practice Session",
+    "Practicesession.page.subheading": "Put your learning to the test",
+    "Practicesession.session.startbutton": "Start session"
 }

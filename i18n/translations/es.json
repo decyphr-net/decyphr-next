@@ -29,7 +29,7 @@
   "Accounts.register.leftpanel.passwordfield": "Contraseña",
   "Accounts.register.leftpanel.nativelanguage": "Lengua materna",
   "Accounts.register.leftpanel.newlanuagagefield": "Nuevo idioma",
-  "Accounts.register.leftpanel.lanuagepreferencefield": "Preferencia de idioma",
+  "Accounts.register.leftpanel.lanuagepreferencefield": "preferencia de idioma",
   "Accounts.register.leftpanel.registerbutton": "¡Registrarse!",
   "Accounts.register.rightpanel.header": "Bienvenido a Decyphr",
   "Accounts.register.rightpanel.helpparagraph": "¡Estás a una simple distancia de tu nueva experiencia de aprendizaje!",
@@ -52,5 +52,9 @@
   "Readingsession.modal.endsession.paragraph": "¿Cuántas páginas leíste?",
   "Readingsession.modal.endsession.input.placeholder": "Número de páginas",
   "Readingsession.modal.endsession.footer.close": "Cerca",
-  "Readingsession.modal.endsession.footer.end": "Finalizar sesión"
+  "Readingsession.modal.endsession.footer.end": "Finalizar sesión",
+  "Practicesession.page.title": "Sesión de practica",
+  "Practicesession.page.header": "Sesión de practica",
+  "Practicesession.page.subheading": "Pon a prueba tu aprendizaje",
+  "Practicesession.session.startbutton": "Iniciar sesión"
 }

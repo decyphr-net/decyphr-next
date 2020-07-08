@@ -46,11 +46,15 @@
   "Readingsession.modal.startsession.header": "Iniciar uma nova sessão?",
   "Readingsession.modal.startsession.paragraph": "Por quanto tempo você gostaria de ler?",
   "Readingsession.modal.startsession.input.placeholder": "Número em minutos",
-  "Readingsession.modal.startsession.footer.close": "Fecha",
+  "Readingsession.modal.startsession.footer.close": "Perto",
   "Readingsession.modal.startsession.footer.start": "Iniciar Sessão",
   "Readingsession.modal.endsession.header": "Terminar cedo?",
   "Readingsession.modal.endsession.paragraph": "Quantas páginas você leu?",
   "Readingsession.modal.endsession.input.placeholder": "Número de páginas",
-  "Readingsession.modal.endsession.footer.close": "Fecha",
-  "Readingsession.modal.endsession.footer.end": "Encerrar Sessão"
+  "Readingsession.modal.endsession.footer.close": "Perto",
+  "Readingsession.modal.endsession.footer.end": "Encerrar Sessão",
+  "Practicesession.page.title": "Sessão de treino",
+  "Practicesession.page.header": "Sessão de treino",
+  "Practicesession.page.subheading": "Coloque seu aprendizado à prova",
+  "Practicesession.session.startbutton": "Iniciar sessão"
 }

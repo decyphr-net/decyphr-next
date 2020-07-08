@@ -11,13 +11,12 @@ const Navigation: React.FC = () => {
     <Navbar bg="light" variant="light">
       <Navbar.Brand href="#home">Decyphr</Navbar.Brand>
       <Nav className="mr-auto">
-        <Nav.Link>
-          <Link href="/[lang]/library" as={`/${locale}/library`}>
-            <a>My Library</a>
-          </Link>
-        </Nav.Link>
-        <Nav.Link href="#features">Features</Nav.Link>
-        <Nav.Link href="#pricing">Pricing</Nav.Link>
+        <Link href="/[lang]/library" as={`/${locale}/library`}>
+          <a>My Library</a>
+        </Link>
+        <Link href="/[lang]/practice" as={`/${locale}/practice`}>
+          <a>Practice</a>
+        </Link>
       </Nav>
     </Navbar>
   )
