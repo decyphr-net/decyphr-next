@@ -81,6 +81,7 @@ const Register: React.FC = () => {
 
       <form className={styles.form}>
         <TextInput
+          value={''}
           placeholder={t('Accounts.register.leftpanel.emailfield')}
           label={t('Accounts.register.leftpanel.emailfield')}
           name="email"
@@ -88,6 +89,7 @@ const Register: React.FC = () => {
           onChangeHandler={setEmail}
         />
         <TextInput
+          value={''}
           placeholder={t('Accounts.register.leftpanel.usernamefield')}
           label={t('Accounts.register.leftpanel.usernamefield')}
           name="username"
@@ -95,6 +97,7 @@ const Register: React.FC = () => {
           onChangeHandler={setUsername}
         />
         <TextInput
+          value={''}
           placeholder={t('Accounts.register.leftpanel.passwordfield')}
           label={t('Accounts.register.leftpanel.passwordfield')}
           name="password"
@@ -104,18 +107,21 @@ const Register: React.FC = () => {
         <SelectInput
           placeholder={t('Accounts.register.leftpanel.nativelanguage')}
           label={t('Accounts.register.leftpanel.nativelanguage')}
+          name="nativelanguage"
           dataset={languages}
           onChangeHandler={setNativeLanguage}
         />
         <SelectInput
           placeholder={t('Accounts.register.leftpanel.newlanuagagefield')}
           label={t('Accounts.register.leftpanel.newlanuagagefield')}
+          name="newlanguage"
           dataset={languages}
           onChangeHandler={setNewLanguage}
         />
         <SelectInput
           placeholder={t('Accounts.register.leftpanel.lanuagepreferencefield')}
           label={t('Accounts.register.leftpanel.lanuagepreferencefield')}
+          name="languagepreference"
           dataset={languages}
           onChangeHandler={updateLanguagePreference}
         />

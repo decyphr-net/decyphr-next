@@ -235,6 +235,7 @@ const ReadingSession: React.FC = () => {
       <Row noGutters={true} className="justify-content-md-center">
         <Col md={{ offset: 4, span: 4}}>
           <TextInput
+            value={''}
             placeholder={t('Readingsession.translate.input.placeholder')}
             label={t('Readingsession.translate.input.placeholder')}
             name="text-to-translate"
@@ -263,6 +264,7 @@ const ReadingSession: React.FC = () => {
         <Modal.Body>
           <p>{t('Readingsession.modal.startsession.paragraph')}</p>
           <TextInput
+            value={''}
             placeholder={t('Readingsession.modal.startsession.input.placeholder')}
             label={t('Readingsession.modal.startsession.input.placeholder')}
             name="duration"
@@ -289,6 +291,7 @@ const ReadingSession: React.FC = () => {
         <Modal.Body>
           <p>{t('Readingsession.modal.endsession.paragraph')}</p>
           <TextInput
+            value={''}
             placeholder={t('Readingsession.modal.endsession.input.placeholder')}
             label={t('Readingsession.modal.endsession.input.placeholder')}
             name="pages"
