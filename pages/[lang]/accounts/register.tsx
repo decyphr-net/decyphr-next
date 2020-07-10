@@ -81,7 +81,7 @@ const Register: React.FC = () => {
 
       <form className={styles.form}>
         <TextInput
-          value={''}
+          value={email}
           placeholder={t('Accounts.register.leftpanel.emailfield')}
           label={t('Accounts.register.leftpanel.emailfield')}
           name="email"
@@ -89,7 +89,7 @@ const Register: React.FC = () => {
           onChangeHandler={setEmail}
         />
         <TextInput
-          value={''}
+          value={username}
           placeholder={t('Accounts.register.leftpanel.usernamefield')}
           label={t('Accounts.register.leftpanel.usernamefield')}
           name="username"
@@ -97,7 +97,7 @@ const Register: React.FC = () => {
           onChangeHandler={setUsername}
         />
         <TextInput
-          value={''}
+          value={password}
           placeholder={t('Accounts.register.leftpanel.passwordfield')}
           label={t('Accounts.register.leftpanel.passwordfield')}
           name="password"

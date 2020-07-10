@@ -23,7 +23,7 @@ const Login: React.FC = () => {
     if (localStorage.getItem('token')) {
       Router.push('/[lang]/dashboard', `/${locale}/dashboard`)
     }
-  })
+  }, [])
 
   const handleSuccess = data => {
     localStorage.setItem('token', data.auth_token)
@@ -58,7 +58,7 @@ const Login: React.FC = () => {
       
       <form className={styles.form}>
         <TextInput
-          value={''}
+          value={email}
           placeholder={t('Accounts.login.rightpanel.emailfield')}
           label={t('Accounts.login.rightpanel.emailfield')}
           name="email"
@@ -66,7 +66,7 @@ const Login: React.FC = () => {
           onChangeHandler={setEmail}
         />
         <TextInput
-          value={''}
+          value={password}
           placeholder={t('Accounts.login.rightpanel.passwordfield')}
           label={t('Accounts.login.rightpanel.passwordfield')}
           name="password"
