@@ -6,7 +6,8 @@ const urls = {
   bookSearch: 'books/?name=',
   readingSession: 'reading-sessions/',
   translate: 'translate/',
-  practiceSessions: 'practice-sessions/sessions/'
+  practiceSessions: 'practice-sessions/sessions/',
+  questions: 'practice-sessions/questions/'
 }
 
 function getHeaders(authRequired: boolean) {
@@ -46,6 +47,7 @@ export default async function api<T>(
   })
 
   let result = await response.json()
+  console.log(result)
 
   if (response.status === 200 || response.status === 201) {
     setState(result)
