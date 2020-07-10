@@ -58,6 +58,7 @@ const Login: React.FC = () => {
       
       <form className={styles.form}>
         <TextInput
+          value={''}
           placeholder={t('Accounts.login.rightpanel.emailfield')}
           label={t('Accounts.login.rightpanel.emailfield')}
           name="email"
@@ -65,6 +66,7 @@ const Login: React.FC = () => {
           onChangeHandler={setEmail}
         />
         <TextInput
+          value={''}
           placeholder={t('Accounts.login.rightpanel.passwordfield')}
           label={t('Accounts.login.rightpanel.passwordfield')}
           name="password"
