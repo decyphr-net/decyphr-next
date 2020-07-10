@@ -1,8 +1,9 @@
 import styles from './input.module.scss'
 
-export function TextInput({ placeholder, name, label, type, onChangeHandler }) {
+export function TextInput({ placeholder, name, label, type, onChangeHandler, value }) {
   return (
     <input
+      value={value}
       className={styles.formInput}
       placeholder={placeholder}
       aria-label={label}

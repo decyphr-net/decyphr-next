@@ -52,7 +52,7 @@ const PracticeSession: React.FC = () => {
   const millisToMinutesAndSeconds = millis => {
     let minutes = Math.floor(millis / 60000)
     let seconds = ((millis % 60000) / 1000).toFixed(0)
-    return "00:" + (minutes < 10 ? '0' : '') + minutes + ":" + (+seconds < 10 ? '0' : '') + seconds
+    return '00:' + (minutes < 10 ? '0' : '') + minutes + ":" + (+seconds < 10 ? '0' : '') + seconds
   }
 
   const endSession = async () => {
@@ -71,8 +71,6 @@ const PracticeSession: React.FC = () => {
     setAnswer(data)
     setCurrentQuestion(currentQuestion + 1)
     setCurrentGuess('')
-
-    console.log(currentQuestion)
 
     if (currentQuestion === 4) {
       endSession()
@@ -112,6 +110,7 @@ const PracticeSession: React.FC = () => {
                 {session.question_set[currentQuestion].translation.source_text}
                   <br />
                   <TextInput
+                    value={currentGuess}
                     placeholder="Your Answer"
                     label="Your Answer"
                     name="guess"
