@@ -19,9 +19,7 @@ const WithLeftPanel: React.FC = (props: Panel) => {
     <>
       <div className={styles.backgroundInverted}></div>
       <div className={styles.content}>
-        <form>
-          { props.children }
-        </form>
+        { props.children }
       </div>
     </>
   )
