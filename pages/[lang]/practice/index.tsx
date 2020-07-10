@@ -6,15 +6,15 @@ import DashboardLayout from '../../../components/layout/dashboard'
 import { Button } from '../../../components/elements/Button'
 import api from '../../../utils/api'
 import { TextInput } from '../../../components/elements/Input'
-import { Session, Question } from '../../../types/practice'
+import { Session } from '../../../types/practice'
 
-function Feedback({ correct, correctAnswer}) {
-  if (correct) {
-    return <p>Correct!</p>
-  } else if (!correctAnswer) {
+function Feedback(props) {
+  if (props.correct) {
+    return <p>props.correctText</p>
+  } else if (!props.correctAnswer) {
     return <></>
   } else {
-    return <p>{`Sorry, the correct answer is: ${correctAnswer}`}</p>
+    return <p>{props.isIncorrectText}{' '}${props.correctAnswer}</p>
   }
 }
 
@@ -104,24 +104,30 @@ const PracticeSession: React.FC = () => {
           {session.question_set.length > 0
             ? (currentQuestion === 5
               ? (
-                <p>You have completed this session. You scored {score}</p>
+                <p>{t("Practivcesession.session.ended")}{' '}{score}</p>
               ) : (
                 <>
                 {session.question_set[currentQuestion].translation.source_text}
                   <br />
                   <TextInput
-                    value={currentGuess}
-                    placeholder="Your Answer"
-                    label="Your Answer"
+                    placeholder={t('Practicesession.guess.inputplaceholder')}
+                    label={t('Practicesession.guess.inputlabel')}
                     name="guess"
                     type="text"
                     onChangeHandler={setCurrentGuess}
+                    value={currentGuess}
                   />
                   <Button
-                    text={"Guess"}
+                    text={t('Practicesession.button.text')}
                     onClickHandler={() => submitGuess(session.question_set[currentQuestion].id)}
                   />
-                  <Feedback correct={answer.correct} correctAnswer={answer.correct_answer} />
+                  
+                  <Feedback
+                    correct={answer.correct}
+                    correctAnswer={answer.correct_answer}
+                    isCorrectText={t('Practicesession.feedback.correct')}
+                    isIncorrectText={t('Practicesession.feedback.incorrect')}
+                  />
                 </>
               )
             ) : <></>

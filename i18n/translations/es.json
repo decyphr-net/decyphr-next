@@ -56,5 +56,11 @@
   "Practicesession.page.title": "Sesión de practica",
   "Practicesession.page.header": "Sesión de practica",
   "Practicesession.page.subheading": "Pon a prueba tu aprendizaje",
-  "Practicesession.session.startbutton": "Iniciar sesión"
+  "Practicesession.session.startbutton": "Iniciar sesión",
+  "Practicesession.session.ended": "Has completado esta sesión. Has anotado",
+  "Practicesession.guess.inputplaceholder": "Tu respuesta",
+  "Practicesession.guess.inputlabel": "Tu respuesta",
+  "Practicesession.button.text": "Adivinar",
+  "Practicesession.feedback.correct": "¡Correcto!",
+  "Practicesession.feedback.incorrect": "Lo sentimos, la respuesta correcta es:"
 }
