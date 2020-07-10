@@ -9,7 +9,7 @@
   "Index.about.whatisitparagraph2": "Enquanto aprende a ler um novo livro, você pode traduzir seu texto e obter um detalhamento da estrutura da tradução, além de um clipe de áudio, para ter uma idéia de como o texto deve soar no texto original.",
   "Index.about.whatisitparagraph3": "O Decyphr pegará o texto que você traduziu e gerará questionários para você praticar, o que significa que você cria o contexto para o aprendizado dos livros que está lendo.",
   "Index.about.whydecyphrheader": "Por que escolher Decyphr?",
-  "Index.about.whydecyphrparagraph1": "O Decyphr permite escolher quais livros ler e monitorar o processo em toda a sua biblioteca personalizada. Isso poderá dizer quanto progresso você está fazendo em sua jornada para se tornar fluente em seu novo idioma.",
+  "Index.about.whydecyphrparagraph1": "O Decyphr permite escolher quais livros ler e monitorar o processo em toda a sua biblioteca personalizada. Isso será capaz de dizer quanto progresso você está fazendo em sua jornada para se tornar fluente em seu novo idioma.",
   "Index.about.whydecyphrparagraph2": "O Decyphr não apenas traduz o texto do seu livro, mas também ajuda a entender a estrutura das frases que você traduziu, dizendo quais palavras são verbos ou substantivos e a que tempos um verbo pertence.",
   "Index.about.whydecyphrparagraph3": "Decyphr fará um questionário sobre as frases que você traduziu de seus livros. Isso significa que, como você controla completamente o material que está lendo, o material em que será testado será adaptado ao contexto que você escolher, proporcionando uma experiência de aprendizado completamente personalizada.",
   "Accounts.login.title": "Faça login no Decyphr!",
@@ -56,5 +56,11 @@
   "Practicesession.page.title": "Sessão de treino",
   "Practicesession.page.header": "Sessão de treino",
   "Practicesession.page.subheading": "Coloque seu aprendizado à prova",
-  "Practicesession.session.startbutton": "Iniciar sessão"
+  "Practicesession.session.startbutton": "Iniciar sessão",
+  "Practicesession.session.ended": "Você concluiu esta sessão. Você pontuou",
+  "Practicesession.guess.inputplaceholder": "sua resposta",
+  "Practicesession.guess.inputlabel": "sua resposta",
+  "Practicesession.button.text": "Acho",
+  "Practicesession.feedback.correct": "Corrigir!",
+  "Practicesession.feedback.incorrect": "Desculpe, a resposta correta é:"
 }
