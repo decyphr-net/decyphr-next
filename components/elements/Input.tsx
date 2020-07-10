@@ -14,9 +14,14 @@ export function TextInput({ placeholder, name, label, type, onChangeHandler, val
   )
 }
 
-export function SelectInput({ placeholder, label, dataset, onChangeHandler }) {
+export function SelectInput({ placeholder, label, name, dataset, onChangeHandler }) {
   return (
-    <select className={styles.formInput} onChange={e => onChangeHandler(e.target.value)} aria-label={label}>
+    <select
+      className={styles.formInput}
+      name={name}
+      onChange={e => onChangeHandler(e.target.value)}
+      aria-label={label}
+    >
       <option value="" selected disabled hidden>{placeholder}</option>
       {dataset.map((data, index) => {
         return <option key={index} value={data.id}>{data.name}</option>
