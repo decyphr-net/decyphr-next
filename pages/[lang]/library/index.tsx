@@ -46,15 +46,19 @@ const Library: React.FC = () => {
   }
 
   return (
-    <DashboardLayout title="Your Library" pageTitle="Library" pageSubtitle="Welcome to your Library. Here you can manage the books in your library or add more!">
+    <DashboardLayout
+      title={t('Library.page.title')}
+      pageTitle={t('Library.page.header')}
+      pageSubtitle={t('Library.page.subtitle')}
+    >
       <Row noGutters={true} className="justify-content-md-center">
         <Col md={10}>
           <Row noGutters={true}>
             <Col className={"text-center"} sm={12} md={{ span: 5, offset: 3}}>
               <ListInput
                 list="json-datalist"
-                placeholder="Search for books by title"
-                label="Search for books by title"
+                placeholder={t('Library.input.placeholder')}
+                label={t('Library.input.label')}
                 name="search"
                 type="text"
                 onChangeHandler={performBookSearch}
@@ -67,7 +71,7 @@ const Library: React.FC = () => {
               </datalist>
             </Col>
             <Col className={"text-center text-md-left"} sm={12} md={4}>
-              <Button text={"Add"} className={styles.primaryButton} onClickHandler={e => addToReadingList(e)} />
+              <Button text={t('Library.input.button.text')} className={styles.primaryButton} onClickHandler={e => addToReadingList(e)} />
             </Col>  
           </Row>
         </Col>    
@@ -91,7 +95,7 @@ const Library: React.FC = () => {
                         <Card.Text>{truncateString(item.book.description)}</Card.Text>
                         <Button 
                           className={"text-sm-center text-md-right"}
-                          text={"Start Reading Session"}
+                          text={t('Library.item.startsession')}
                           value={item.book.id}
                           onClickHandler={proceedToSession}
                         />

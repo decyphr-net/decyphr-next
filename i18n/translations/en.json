@@ -62,5 +62,12 @@
     "Practicesession.guess.inputlabel": "Your Answer",
     "Practicesession.button.text": "Guess",
     "Practicesession.feedback.correct": "Correct!",
-    "Practicesession.feedback.incorrect": "Sorry, the correct answer is:"
+    "Practicesession.feedback.incorrect": "Sorry, the correct answer is:",
+    "Library.page.title": "Your Library",
+    "Library.page.header": "Library",
+    "Library.page.subtitle": "Welcome to your Library. Here you can manage the books in your library or add more!",
+    "Library.input.placeholder": "Search for books by title",
+    "Library.input.label": "Search for books by title",
+    "Library.input.button.text": "Add",
+    "Library.item.startsession": "Start Reading Session"
 }
