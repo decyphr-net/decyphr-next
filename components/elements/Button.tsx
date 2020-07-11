@@ -7,7 +7,12 @@ export function Button(props) {
         ? `${styles.formButton} ${props.className}`
         : `${styles.formButton}`
       }
-      onClick={props.onClickHandler}
+      value={props.value
+        ? `${props.value}`
+        : ''
+      }
+
+      onClick={e => props.onClickHandler(e)}
     >
       {props.text}
     </button>

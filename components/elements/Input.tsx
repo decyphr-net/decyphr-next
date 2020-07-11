@@ -14,6 +14,20 @@ export function TextInput({ placeholder, name, label, type, onChangeHandler, val
   )
 }
 
+export function ListInput({ placeholder, name, label, type, onChangeHandler, list }) {
+  return (
+    <input
+      list={list}
+      className={styles.listInput}
+      placeholder={placeholder}
+      aria-label={label}
+      name={name}
+      type={type}
+      onChange={e => onChangeHandler(e.target.value)}
+    />
+  )
+}
+
 export function SelectInput({ placeholder, label, name, dataset, onChangeHandler }) {
   return (
     <select
