@@ -13,11 +13,21 @@ const Library: React.FC = () => {
   const { locale, t } = useTranslation()
   const [libraryItems, setLibraryItems] = React.useState([])
   const [searchResults, setSearchResults] = React.useState([])
+  const [choice, setChoice] = React.useState(0)
+  const [choiceText, setChoiceText] = React.useState('')
+  const [displayAutocomplete, setDisplayAutocomplete] = React.useState('')
   const [errors, setErrors] = React.useState([])
 
   React.useEffect(() => {
     setLibraryItems(JSON.parse(localStorage.getItem('library')))
   }, [])
+
+  React.useEffect(() => {
+
+  }, [libraryItems])
+
+  React.useEffect(() => {
+  }, [searchResults])
 
   const truncateString = text => {
     if (text.length <= 150) {
@@ -35,7 +45,29 @@ const Library: React.FC = () => {
   }
 
   const performBookSearch = async (text) => {
+    setChoiceText(text)
     await api('GET', 'bookSearch', setSearchResults, setErrors, true, undefined, text)
+  }
+
+  const setChoiceValues = e => {
+    setChoiceText(e.target.innerHTML)
+    setChoice(e.target.id)
+    setSearchResults([])
+  }
+
+  const updateLocalState = data => {
+    setLibraryItems([data, ...libraryItems])
+    let localStorageItems = JSON.parse(localStorage.getItem('library'))
+    localStorage.setItem('library', JSON.stringify([data, ...localStorageItems]))
+  }
+
+  const addToReadingList = async (e) => {
+    e.preventDefault()
+
+    let data: any = {
+      "book": choice
+    }
+    await api('POST', 'readingList', updateLocalState, setErrors, true, data)
   }
 
   return (
@@ -47,27 +79,39 @@ const Library: React.FC = () => {
       <Row noGutters={true} className="justify-content-md-center">
         <Col md={10}>
           <Row noGutters={true}>
-            <Col className={"text-center"} sm={12} md={{ span: 8, offset: 2}}>
-              <ListInput
-                list="json-datalist"
-                placeholder={t('Library.input.placeholder')}
-                label={t('Library.input.label')}
-                name="search"
-                type="text"
-                onChangeHandler={performBookSearch}
-              />
+            <Col className={"text-md-center auto-container"} sm={12} md={{ span: 8, offset: 2}} lg={{ span: 5, offset: 3}}>
+              <div className="flex-container flex-column pos-rel">
+                <ListInput
+                  placeholder={t('Library.input.placeholder')}
+                  name="search"
+                  label={t('Library.input.label')}
+                  value={choiceText}
+                  type="text"
+                  onChangeHandler={performBookSearch}
+                />
 
-              <datalist id="json-datalist">
-                {searchResults.map((result, index) => {
-                  return <option key={index} value={result.id}>{result.title}</option>
-                })}
-              </datalist>
+                {searchResults
+                  ? (
+                    <div className={styles.autoContainer}>
+                      {searchResults.map((value, item) => {
+                        return (
+                          <div className={styles.option} key={item}>
+                            <p id={value.id} onClick={e => setChoiceValues(e)}>{value.title}</p>
+                          </div>
+                        )
+                      })}
+                    </div>
+                  ) : (
+                    <></>
+                  )
+                }
+              </div>
             </Col>
-            <Col className={"text-center text-lg-left"} sm={12} md={{ span: 8, offset: 2}} lg={4}>
+            <Col className={"text-center text-lg-left"} sm={12} md={{ span: 8, offset: 2}} lg={{ span: 4, offset: 0}}>
               <Button
                 text={t('Library.input.button.text')}
                 className={styles.primaryButton}
-                onClickHandler={console.log}
+                onClickHandler={addToReadingList}
               />
             </Col>  
           </Row>
