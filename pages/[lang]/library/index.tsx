@@ -13,7 +13,6 @@ const Library: React.FC = () => {
   const { locale, t } = useTranslation()
   const [libraryItems, setLibraryItems] = React.useState([])
   const [searchResults, setSearchResults] = React.useState([])
-  const [choice, setChoice] = React.useState(0)
   const [errors, setErrors] = React.useState([])
 
   React.useEffect(() => {
@@ -39,12 +38,6 @@ const Library: React.FC = () => {
     await api('GET', 'bookSearch', setSearchResults, setErrors, true, undefined, text)
   }
 
-  const addToReadingList = e => {
-    e.preventDefault()
-    let input = document.querySelector('[name=search]')
-    console.log(choice)
-  }
-
   return (
     <DashboardLayout
       title={t('Library.page.title')}
@@ -54,7 +47,7 @@ const Library: React.FC = () => {
       <Row noGutters={true} className="justify-content-md-center">
         <Col md={10}>
           <Row noGutters={true}>
-            <Col className={"text-center"} sm={12} md={{ span: 5, offset: 3}}>
+            <Col className={"text-center"} sm={12} md={{ span: 8, offset: 2}}>
               <ListInput
                 list="json-datalist"
                 placeholder={t('Library.input.placeholder')}
@@ -70,8 +63,12 @@ const Library: React.FC = () => {
                 })}
               </datalist>
             </Col>
-            <Col className={"text-center text-md-left"} sm={12} md={4}>
-              <Button text={t('Library.input.button.text')} className={styles.primaryButton} onClickHandler={e => addToReadingList(e)} />
+            <Col className={"text-center text-lg-left"} sm={12} md={{ span: 8, offset: 2}} lg={4}>
+              <Button
+                text={t('Library.input.button.text')}
+                className={styles.primaryButton}
+                onClickHandler={console.log}
+              />
             </Col>  
           </Row>
         </Col>    
@@ -81,7 +78,7 @@ const Library: React.FC = () => {
         {libraryItems.map((item, index) => {
           return (
             <Row noGutters={true}  key={index} className="justify-content-center">
-              <Col className={"text-center"} md={8}>
+              <Col className={"text-center"} lg={8}>
                 <Card className={`${styles.bookPanel} flex-row flex-wrap`}>
                   <Row noGutters={true} >
                     <Col sm={12} md={2}>
