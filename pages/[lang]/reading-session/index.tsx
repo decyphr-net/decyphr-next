@@ -96,14 +96,26 @@ const ReadingSession: React.FC = () => {
    * and local storage in order to udpate the related state
    */
   React.useEffect(() => {
-    let readingSessions = JSON.parse(localStorage.getItem('library'))
-    let session = readingSessions.find(session => {
-      return session.book.id == Router.query['id']
-    })
-
-    setLibraryItem(session.id)
-    setBook(session.book)
+    getBookLibraryItem()
   }, [])
+
+  const getLibraryItemHandler = data => {
+    setBook(data.book)
+  }
+
+  const getBookLibraryItem = async () => {
+    setLibraryItem(+Router.query['id'])
+    await api(
+      'GET', 
+      'readingList', 
+      getLibraryItemHandler, 
+      setErrors, 
+      true, 
+      undefined, 
+      null, 
+      Router.query['id'].toString()
+    )
+  }
   
   /**
    * Update the timer information. This will update the seconds and minutes

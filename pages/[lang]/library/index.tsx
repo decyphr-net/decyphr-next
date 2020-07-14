@@ -15,11 +15,10 @@ const Library: React.FC = () => {
   const [searchResults, setSearchResults] = React.useState([])
   const [choice, setChoice] = React.useState(0)
   const [choiceText, setChoiceText] = React.useState('')
-  const [displayAutocomplete, setDisplayAutocomplete] = React.useState('')
   const [errors, setErrors] = React.useState([])
 
   React.useEffect(() => {
-    setLibraryItems(JSON.parse(localStorage.getItem('library')))
+    getLibraryItems()
   }, [])
 
   React.useEffect(() => {
@@ -28,6 +27,10 @@ const Library: React.FC = () => {
 
   React.useEffect(() => {
   }, [searchResults])
+
+  const getLibraryItems = async () => {
+    await api('GET', 'readingList', setLibraryItems, setErrors, true)
+  }
 
   const truncateString = text => {
     if (text.length <= 150) {
@@ -57,8 +60,6 @@ const Library: React.FC = () => {
 
   const updateLocalState = data => {
     setLibraryItems([data, ...libraryItems])
-    let localStorageItems = JSON.parse(localStorage.getItem('library'))
-    localStorage.setItem('library', JSON.stringify([data, ...localStorageItems]))
   }
 
   const addToReadingList = async (e) => {
@@ -120,6 +121,7 @@ const Library: React.FC = () => {
 
       <Row noGutters={true} className={styles.library}>
         {libraryItems.map((item, index) => {
+          console.log(item)
           return (
             <Row noGutters={true}  key={index} className="justify-content-center">
               <Col className={"text-center"} lg={8}>
@@ -137,7 +139,7 @@ const Library: React.FC = () => {
                         <Button 
                           className={"text-sm-center text-md-right"}
                           text={t('Library.item.startsession')}
-                          value={item.book.id}
+                          value={item.id}
                           onClickHandler={proceedToSession}
                         />
                       </Card.Body>
