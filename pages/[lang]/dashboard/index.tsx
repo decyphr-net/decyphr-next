@@ -49,18 +49,22 @@ const Dashboard: React.FC = () => {
   }
 
   return (
-    <DashboardLayout title="Decyphr Dashboard" pageTitle="Dashboard" pageSubtitle="Welcome to your Decyphr Dashboard">
+    <DashboardLayout
+      title={t('Dashboard.page.title')}
+      pageTitle={t('Dashboard.page.header')}
+      pageSubtitle={t('Dashboard.page.subtitle')}
+    >
       <Row noGutters={true} className="justify-content-md-center">
         <Col className="text-center" sm={12} md={3}>
           <Card>
             <Card.Body>
-              <Card.Title>Translations</Card.Title>
-              <Card.Text>You have translated</Card.Text>
+              <Card.Title>{t('Dashboard.cards.translation.header')}</Card.Title>
+              <Card.Text>{t('Dashboard.cards.translation.bodyone')}</Card.Text>
               <Card.Text>{translationCount}</Card.Text>
-              <Card.Text>pieces of text</Card.Text>
+              <Card.Text>{t('Dashboard.cards.translation.bodytwo')}</Card.Text>
               <Button 
                 className={"text-sm-center text-md-right"}
-                text={"Learn new words!"}
+                text={t('Dashboard.cards.translation.button.text')}
                 value={"library"}
                 onClickHandler={redirectToPage}
               />
@@ -70,13 +74,13 @@ const Dashboard: React.FC = () => {
         <Col className="text-center" sm={12} md={3}>
           <Card>
             <Card.Body>
-              <Card.Title>Practice Sessions</Card.Title>
-              <Card.Text>You have completed</Card.Text>
+              <Card.Title>{t('Dashboard.cards.practice.header')}</Card.Title>
+              <Card.Text>{t('Dashboard.cards.practice.bodyone')}</Card.Text>
               <Card.Text>{practiceSessionCount}</Card.Text>
-              <Card.Text>sessions to date</Card.Text>
+              <Card.Text>{t('Dashboard.cards.practice.bodytwo')}</Card.Text>
               <Button 
                 className={"text-sm-center text-md-right"}
-                text={"Reinforce those words!"}
+                text={t('Dashboard.cards.practice.button.text')}
                 value={"practice"}
                 onClickHandler={redirectToPage}
               />
