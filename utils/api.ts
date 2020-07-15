@@ -34,6 +34,7 @@ export default async function api<T>(
   params?: string,
   pk?: string,
 ) {
+  console.warn('This method is deprecated')
   const headers = getHeaders(authRequired)
   let server = process.env.API
 
