@@ -4,6 +4,7 @@ const urls = {
   languages: 'languages/',
   dashboard: 'dashboard/',
   bookSearch: 'books/?name=',
+  readingList: 'reading-list/',
   readingSession: 'reading-sessions/',
   translate: 'translate/',
   practiceSessions: 'practice-sessions/sessions/',
@@ -33,6 +34,7 @@ export default async function api<T>(
   params?: string,
   pk?: string,
 ) {
+  console.warn('This method is deprecated')
   const headers = getHeaders(authRequired)
   let server = process.env.API
 
@@ -47,7 +49,6 @@ export default async function api<T>(
   })
 
   let result = await response.json()
-  console.log(result)
 
   if (response.status === 200 || response.status === 201) {
     setState(result)

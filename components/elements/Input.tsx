@@ -14,10 +14,10 @@ export function TextInput({ placeholder, name, label, type, onChangeHandler, val
   )
 }
 
-export function ListInput({ placeholder, name, label, type, onChangeHandler, list }) {
+export function ListInput({ placeholder, name, label, value, type, onChangeHandler }) {
   return (
     <input
-      list={list}
+      value={value}
       className={styles.listInput}
       placeholder={placeholder}
       aria-label={label}
