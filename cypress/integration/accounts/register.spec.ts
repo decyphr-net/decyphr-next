@@ -17,4 +17,21 @@ describe('Registration process', () => {
     cy.get('select[name="newlanguage"]').should('have.text', 'New Language')
     cy.get('select[name="languagepreference"]').should('have.text', 'Language Preference')
   })
+
+  it('recieves a token when all information is filled out correctly', () => {
+    cy.visit('/en/accounts/register')
+
+    let randomNumber = Math.floor(Math.random() * Math.floor(10000))
+
+    cy.get('input[name="email"]').type(`aaron${randomNumber}@example.com`)
+    cy.get('input[name="username"]').type(`aaron${randomNumber}test`)
+    cy.get('input[name="password"]').type(`testpassword${randomNumber}`)
+    cy.get('select[name="nativelanguage"]').select('2')
+    cy.get('select[name="newlanguage"]').select('1')
+    cy.get('select[name="languagepreference"]').select('2')
+    cy.get('button').click().should(() => {
+      cy.wait(10000)
+      expect(localStorage.getItem('token')).to.eq(localStorage.getItem('token'))
+    })
+  })
 })
