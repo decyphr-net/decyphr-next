@@ -12,6 +12,7 @@ import Book from '../../../types/book'
 import { SessionData } from './types'
 import { TextInput } from '../../../components/elements/Input'
 import { Button } from '../../../components/elements/Button'
+import styles from './index.module.scss'
 
 function audioFormatter(cell, row) {
   return (
@@ -223,51 +224,59 @@ const ReadingSession: React.FC = () => {
   return (
     <DashboardLayout title="Reading Session" pageTitle={book.title} pageSubtitle="">
       <Row noGutters={true} className="justify-content-md-center">
-        <Col xs={1}>
+        <Col className="text-center" xs={12} lg={2}>
           <img src={book.small_thumbnail} alt={book.title} />
         </Col>
-        <Col xs={9}>
-          <div className={timerClassName}>
-            {t('Readingsession.header.timer.timeremaining')}{' '}{minutes}:{seconds}
-          </div>
-          <Button
-            className={startButtonClass}
-            text={t('Readingsession.header.timer.starttimer')}
-            onClickHandler={handleStartModalOpen}
-          />
-
+        <Col className="text-center text-lg-left" xs={12} md={8} lg={9}>
           <Button
             className={endButtonClass}
             text={t('Readingsession.header.timer.endtimer')}
             onClickHandler={handleEndModalOpen}
           />
-        </Col>
-      </Row>
-
-      <Row noGutters={true} className="justify-content-md-center">
-        <Col md={{ offset: 4, span: 4}}>
-          <TextInput
-            value={textToTranslate}
-            placeholder={t('Readingsession.translate.input.placeholder')}
-            label={t('Readingsession.translate.input.placeholder')}
-            name="text-to-translate"
-            type="text"
-            onChangeHandler={setTextToTranslate}
-          />
-        </Col>
-        <Col md={4}>
           <Button
-            text={t('Readingsession.translate.input.button')}
-            onClickHandler={submitText}
+            className={startButtonClass}
+            text={t('Readingsession.header.timer.starttimer')}
+            onClickHandler={handleStartModalOpen}
           />
+          
+          <div className={`${timerClassName} ${styles.timer}`}>
+            {t('Readingsession.header.timer.timeremaining')}{' '}{minutes}:{seconds}
+          </div>
+          
         </Col>
       </Row>
 
-      <Row noGutters={true} className="justify-content-md-center">
-        <Col md={10}>
-          <BootstrapTable keyField='id' data={ translations } columns={ columns } pagination={ paginationFactory(options) }/>
-        </Col>
-      </Row>
+      <div className={`${isRunning ? '' : 'd-none'}`}>
+        <Row noGutters={true} className="justify-content-md-center">
+          <Col xs={12} md={10} lg={{ offset: 4, span: 4}}>
+            <TextInput
+              value={textToTranslate}
+              placeholder={t('Readingsession.translate.input.placeholder')}
+              label={t('Readingsession.translate.input.placeholder')}
+              name="text-to-translate"
+              type="text"
+              onChangeHandler={setTextToTranslate}
+            />
+          </Col>
+          <Col className="text-center text-lg-left" xs={12} md={8} lg={4}>
+            <Button
+              text={t('Readingsession.translate.input.button')}
+              onClickHandler={submitText}
+            />
+          </Col>
+        </Row>
+
+        <Row noGutters={true} className={`justify-content-md-center ${styles.table}`}>
+          <Col md={10}>
+            <BootstrapTable
+              wrapperClasses="table-responsive no-gutters"
+              keyField="id"
+              data={ translations }
+              columns={ columns }
+              pagination={ paginationFactory(options) }/>
+          </Col>
+        </Row>
+      </div>
 
       <Modal show={showStartModal} onHide={handleStartModalClose}>
         <Modal.Header closeButton>
@@ -286,10 +295,12 @@ const ReadingSession: React.FC = () => {
         </Modal.Body>
         <Modal.Footer>
           <Button
+            className={styles.closeModalButton}
             text={t('Readingsession.modal.startsession.footer.close')}
             onChangeHandler={handleStartModalClose}
           />
           <Button
+            className={styles.modalButton}
             text={t('Readingsession.modal.startsession.footer.start')}
             onClickHandler={startReadingSession}
           />
@@ -313,10 +324,12 @@ const ReadingSession: React.FC = () => {
         </Modal.Body>
         <Modal.Footer>
           <Button
+            className={styles.closeModalButton}
             text={t('Readingsession.modal.endsession.footer.close')}
             onClickHandler={handleEndModalClose}
           />
           <Button
+            className={styles.modalButton}
             text={t('Readingsession.modal.endsession.footer.end')} 
             onClickHandler={endReadingSession}
           />
