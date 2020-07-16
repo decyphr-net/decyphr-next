@@ -80,7 +80,7 @@ const Library: React.FC = () => {
       <Row noGutters={true} className="justify-content-md-center">
         <Col md={10}>
           <Row noGutters={true}>
-            <Col className={"text-md-center auto-container"} sm={12} md={{ span: 8, offset: 2}} lg={{ span: 5, offset: 3}}>
+            <Col className={"text-md-center auto-container"} sm={12} md={12} lg={{ span: 5, offset: 3}}>
               <div className="flex-container flex-column pos-rel">
                 <ListInput
                   placeholder={t('Library.input.placeholder')}
@@ -108,10 +108,10 @@ const Library: React.FC = () => {
                 }
               </div>
             </Col>
-            <Col className={"text-center text-lg-left"} sm={12} md={{ span: 8, offset: 2}} lg={{ span: 4, offset: 0}}>
+            <Col className={"text-center text-lg-left"} sm={12} md={12} lg={{ span: 4, offset: 0}}>
               <Button
                 text={t('Library.input.button.text')}
-                className={styles.primaryButton}
+                className={styles.inlineButton}
                 onClickHandler={addToReadingList}
               />
             </Col>  
@@ -121,23 +121,22 @@ const Library: React.FC = () => {
 
       <Row noGutters={true} className={styles.library}>
         {libraryItems.map((item, index) => {
-          console.log(item)
           return (
             <Row noGutters={true}  key={index} className="justify-content-center">
               <Col className={"text-center"} lg={8}>
                 <Card className={`${styles.bookPanel} flex-row flex-wrap`}>
                   <Row noGutters={true} >
-                    <Col sm={12} md={2}>
+                    <Col sm={12} md={3}>
                       <Card.Header>
                         <img src={item.book.small_thumbnail} alt="" />
                       </Card.Header>
                     </Col>
-                    <Col sm={12} md={10}>
+                    <Col sm={12} md={9}>
                       <Card.Body>
                         <Card.Title>{item.book.title}</Card.Title>
                         <Card.Text>{truncateString(item.book.description)}</Card.Text>
                         <Button 
-                          className={"text-sm-center text-md-right"}
+                          className={"text-sm-center"}
                           text={t('Library.item.startsession')}
                           value={item.id}
                           onClickHandler={proceedToSession}

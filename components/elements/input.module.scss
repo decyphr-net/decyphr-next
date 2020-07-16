@@ -2,6 +2,7 @@
   padding: 15px 22px;
   box-sizing: border-box;
   font-size: 1.125em;
+  width: 100%;
 }
 
 .listInput {
@@ -12,8 +13,8 @@
   font-size: 1.125em;
 }
 
-@media (min-width: 480px) {
+@media (max-width: 480px) {
   .formInput {
-    margin: 10px 5px;
+    margin-top: 10px;
   }
 }

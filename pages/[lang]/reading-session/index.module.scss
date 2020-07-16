@@ -1,28 +1,19 @@
-.translateText {
-  width: 100%;
-  padding: 12.5px 22px;
-  margin: 10px 5px;
-  box-sizing: border-box;
-  font-size: 1.125em;
+.table {
+  margin-top: 2.5%;
 }
 
-.translateButton {
-  width: 30%;
-  padding: 15px 22px;
-  margin: 10px 5px;
-  background: #00f2fe;
-  text-decoration: none;
-  border: none;
-  box-sizing: border-box;
-  font-size: 1.125em;
-  color: #324B4D;
-  font-weight: 400;
-  transition: 0.3s;
-  font-weight: 500;
+.timer {
+  margin-top: 10%;
+  margin-bottom: 5%;
+  font-size: 1.2em;
+}
 
-  &:hover {
-    cursor: pointer;
-    color: white;
-    background-color: #324B4D;
+@media (min-width: 480px) and (max-width: 1024px) {
+  .modalButton {
+    width: 55%;
+  }
+
+  .closeModalButton {
+    width: 40%;
   }
 }
