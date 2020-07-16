@@ -198,11 +198,13 @@ const ReadingSession: React.FC = () => {
         pages: pagesModalInput,
         status: 'F'
       }
+      setSessionStatus('F')
     } else {
       data = {
         pages: pagesModalInput,
         status: 'E'
       }
+      setSessionStatus('E')
     }
     
     api('PATCH', 'readingSession', handleSessionEnd, handleErrors, true, data, null, String(sessionId))
@@ -221,13 +223,22 @@ const ReadingSession: React.FC = () => {
     setTranslations([data, ...translations])
   }
 
+  const returnToLibrary = e => {
+    e.preventDefault()
+    Router.push('/[lang]/library', `/${locale}/library`)
+  }
+
   return (
-    <DashboardLayout title="Reading Session" pageTitle={book.title} pageSubtitle="">
+    <DashboardLayout
+      title={t('Readingsession.page.title')}
+      pageTitle={book.title}
+      pageSubtitle=""
+    >
       <Row noGutters={true} className="justify-content-md-center">
         <Col className="text-center" xs={12} lg={2}>
           <img src={book.small_thumbnail} alt={book.title} />
         </Col>
-        <Col className="text-center text-lg-left" xs={12} md={8} lg={9}>
+        <Col className="text-center text-lg-center" xs={12} md={8} lg={9}>
           <Button
             className={endButtonClass}
             text={t('Readingsession.header.timer.endtimer')}
@@ -246,37 +257,68 @@ const ReadingSession: React.FC = () => {
         </Col>
       </Row>
 
-      <div className={`${isRunning ? '' : 'd-none'}`}>
-        <Row noGutters={true} className="justify-content-md-center">
-          <Col xs={12} md={10} lg={{ offset: 4, span: 4}}>
-            <TextInput
-              value={textToTranslate}
-              placeholder={t('Readingsession.translate.input.placeholder')}
-              label={t('Readingsession.translate.input.placeholder')}
-              name="text-to-translate"
-              type="text"
-              onChangeHandler={setTextToTranslate}
-            />
-          </Col>
-          <Col className="text-center text-lg-left" xs={12} md={8} lg={4}>
-            <Button
-              text={t('Readingsession.translate.input.button')}
-              onClickHandler={submitText}
-            />
-          </Col>
-        </Row>
+      {!isRunning
+        ? (sessionStatus === 'F' || sessionStatus === 'E'
+          ? (
+            <Row noGutters={true} className="justify-content-md-center">
+              <Col className="text-center" xs={6}>
+                <p>{t('Readingsession.session.end.paragraphone')}</p>
+                <p>{t('Readingsession.session.end.paragraphtwo')}{' '}00:{durationModalInput}:00</p>
+                <p>{t('Readingsession.session.end.paragraphthree')}{' '}{pagesModalInput} pages</p>
+                <p>{t('Readingsession.session.end.paragraphfour')}{' '}{translations.length}</p>
+                <Button
+                  text={"Return to Library"}
+                  onClickHandler={returnToLibrary}
+                />
+                <Button
+                  text={"Start another session"}
+                  onClickHandler={handleStartModalOpen}
+                />
+              </Col>
+            </Row>
+          ) : (
+            <Row noGutters={true} className="justify-content-md-center">
+              <Col className="text-center" xs={6}>
+                <h2>{t('Readingsession.session.pretext.heading')}</h2>
+                <p>{t('Readingsession.session.pretext.paragraphone')}</p>
+                <p>{t('Readingsession.session.pretext.paragraphtwo')}</p>
+              </Col>
+            </Row>
+          )
+        ) : (
+          <div className={`${isRunning ? '' : 'd-none'}`}>
+            <Row noGutters={true} className="justify-content-md-center">
+              <Col xs={12} md={10} lg={{ offset: 4, span: 4}}>
+                <TextInput
+                  value={textToTranslate}
+                  placeholder={t('Readingsession.translate.input.placeholder')}
+                  label={t('Readingsession.translate.input.placeholder')}
+                  name="text-to-translate"
+                  type="text"
+                  onChangeHandler={setTextToTranslate}
+                />
+              </Col>
+              <Col className="text-center text-lg-left" xs={12} md={8} lg={4}>
+                <Button
+                  text={t('Readingsession.translate.input.button')}
+                  onClickHandler={submitText}
+                />
+              </Col>
+            </Row>
 
-        <Row noGutters={true} className={`justify-content-md-center ${styles.table}`}>
-          <Col md={10}>
-            <BootstrapTable
-              wrapperClasses="table-responsive no-gutters"
-              keyField="id"
-              data={ translations }
-              columns={ columns }
-              pagination={ paginationFactory(options) }/>
-          </Col>
-        </Row>
-      </div>
+            <Row noGutters={true} className={`justify-content-md-center ${styles.table}`}>
+              <Col md={10}>
+                <BootstrapTable
+                  wrapperClasses="table-responsive no-gutters"
+                  keyField="id"
+                  data={ translations }
+                  columns={ columns }
+                  pagination={ paginationFactory(options) }/>
+              </Col>
+            </Row>
+          </div>
+        )
+      }
 
       <Modal show={showStartModal} onHide={handleStartModalClose}>
         <Modal.Header closeButton>

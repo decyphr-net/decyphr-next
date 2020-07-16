@@ -104,7 +104,7 @@ const PracticeSession: React.FC = () => {
           {session.question_set.length > 0
             ? (currentQuestion === 5
               ? (
-                <p>{t("Practivcesession.session.ended")}{' '}{score}</p>
+                <p>{t("Practicesession.session.ended")}{' '}{score}</p>
               ) : (
                 <>
                 {session.question_set[currentQuestion].translation.source_text}
