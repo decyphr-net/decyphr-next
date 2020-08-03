@@ -6,6 +6,18 @@
   }
 }
 
+.search {
+  margin: 0 !important;
+}
+
+.inlineButton {
+  border: 1px solid #00f2fe;
+
+  &:hover {
+    border: 1px solid #324b4d;
+  }
+}
+
 .auto-container {
   display: flex;
   justify-content: center;
@@ -43,5 +55,3 @@
     padding: 15px 22px;
   }
 }
-
-

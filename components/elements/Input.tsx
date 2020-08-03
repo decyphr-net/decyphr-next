@@ -1,6 +1,13 @@
-import styles from './input.module.scss'
+import styles from "./input.module.scss";
 
-export function TextInput({ placeholder, name, label, type, onChangeHandler, value }) {
+export function TextInput({
+  placeholder,
+  name,
+  label,
+  type,
+  onChangeHandler,
+  value,
+}) {
   return (
     <input
       value={value}
@@ -9,37 +16,59 @@ export function TextInput({ placeholder, name, label, type, onChangeHandler, val
       aria-label={label}
       name={name}
       type={type}
-      onChange={e => onChangeHandler(e.target.value)}
+      onChange={(e) => onChangeHandler(e.target.value)}
     />
-  )
+  );
 }
 
-export function ListInput({ placeholder, name, label, value, type, onChangeHandler }) {
+export function ListInput({
+  className,
+  placeholder,
+  name,
+  label,
+  value,
+  type,
+  onChangeHandler,
+}) {
   return (
     <input
+      className={
+        className ? `${styles.listInput} ${className}` : `${styles.listInput}`
+      }
       value={value}
-      className={styles.listInput}
       placeholder={placeholder}
       aria-label={label}
       name={name}
       type={type}
-      onChange={e => onChangeHandler(e.target.value)}
+      onChange={(e) => onChangeHandler(e.target.value)}
     />
-  )
+  );
 }
 
-export function SelectInput({ placeholder, label, name, dataset, onChangeHandler }) {
+export function SelectInput({
+  placeholder,
+  label,
+  name,
+  dataset,
+  onChangeHandler,
+}) {
   return (
     <select
       className={styles.formInput}
       name={name}
-      onChange={e => onChangeHandler(e.target.value)}
+      onChange={(e) => onChangeHandler(e.target.value)}
       aria-label={label}
     >
-      <option value="" selected disabled hidden>{placeholder}</option>
+      <option value="" selected disabled hidden>
+        {placeholder}
+      </option>
       {dataset.map((data, index) => {
-        return <option key={index} value={data.id}>{data.name}</option>
+        return (
+          <option key={index} value={data.id}>
+            {data.name}
+          </option>
+        );
       })}
     </select>
-  )
+  );
 }
