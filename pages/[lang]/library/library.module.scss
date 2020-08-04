@@ -18,6 +18,16 @@
   }
 }
 
+.menu {
+  list-style: none;
+  padding: 0;
+
+  & > li:hover {
+    background-color: #00f2fe;
+    color: #324b4d;
+  }
+}
+
 .auto-container {
   display: flex;
   justify-content: center;

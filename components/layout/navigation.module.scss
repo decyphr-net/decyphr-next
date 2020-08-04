@@ -1,38 +1,168 @@
-.navigation {
-  height: 100px;
-  background-color: #4facfe;
-  margin-top: 0;
-  width: 100%;
-  color: #FCFCD4;
+.toolbar {
   position: fixed;
-  float: left;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #303c6c;
+  height: 56px;
+}
 
-  h2 {
-    font-size: 2.25em;
+.toolbarNavigation {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.toolbarLogo {
+  margin-left: 1rem;
+}
+
+.toolbarLogo a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.5rem;
+
+  img {
+    width: 7.5%;
+  }
+}
+
+.spacer {
+  flex: 1;
+}
+
+.navigationItems ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.navigationItems li {
+  padding: 0 0.5rem;
+}
+
+.navigationItems a {
+  color: white;
+  text-decoration: none;
+
+  &:hover,
+  &:active {
+    color: #fbe8a6;
+  }
+}
+
+.toggleButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 24px;
+  width: 30px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  box-sizing: border-box;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.toggleButtonLine {
+  width: 30px;
+  height: 2px;
+  background: #fbe8a6;
+}
+
+.sideDrawer {
+  height: 100%;
+  background-color: #303c6c;
+  box-shadow: 1px 0px 7px rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 200;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  text-align: center;
+
+  img {
+    width: 50%;
+  }
+
+  .close {
+    font-size: 1.2rem;
+    color: #fbe8a6;
+    font-weight: 500;
+    position: fixed;
+    top: 2.5%;
+    left: 5%;
   }
 
   ul {
-    list-style: none;
-    
-    
-    li {
-      display: inline;
+    padding: 0;
+  }
+
+  & li {
+    margin: 0.5rem 0;
+  }
+
+  & a {
+    color: #fbfbfb;
+    text-decoration: none;
+    font-size: 1.2rem;
+
+    &:hover,
+    &:active {
+      color: #f4976c;
     }
+  }
+}
 
+.backdrop {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  top: 0;
+  left: 0;
+}
+
+@media (max-width: 678px) {
+  .navigationItems {
+    display: none;
+  }
+
+  .toolbarLogo {
     a {
-      text-decoration: none;
-
-      &:visited {
-        color: #FCFCD4;
+      img {
+        display: none;
       }
+    }
+  }
+}
 
-      &:hover{
-        text-decoration: underline;
-      }
+@media (min-width: 679px) {
+  .sideDrawer {
+    width: 600px;
+  }
 
-      &:active {
-        color: #FCFCD4;
-      }
+  .toolbarLogo {
+    img {
+      width: 35%;
+    }
+  }
+}
+
+@media (max-width: 1025px) {
+  .toolbarLogo {
+    img {
+      width: 50%;
     }
   }
 }

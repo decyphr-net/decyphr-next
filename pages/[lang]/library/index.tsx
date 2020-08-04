@@ -1,10 +1,13 @@
 import React from "react";
 import Router from "next/router";
 import { Card, Row, Col } from "react-bootstrap";
+import Popup from "reactjs-popup";
 import withLocale from "../../../i18n/hoc/withLocale";
 import useTranslation from "../../../i18n/hooks/useTranslation";
+import APIInterface from "../../../utils/api/client";
 import api from "../../../utils/api";
 import DashboardLayout from "../../../components/layout/dashboard";
+import buttonStyle from "../../../components/elements/button.module.scss";
 import styles from "./library.module.scss";
 import { ListInput } from "../../../components/elements/Input";
 import { Button } from "../../../components/elements/Button";
@@ -26,7 +29,16 @@ const Library: React.FC = () => {
   React.useEffect(() => {}, [searchResults]);
 
   const getLibraryItems = async () => {
-    await api("GET", "readingList", setLibraryItems, setErrors, true);
+    let apiInterface = new APIInterface("getReadingList");
+    apiInterface
+      .request()
+      .then((response) => {
+        setLibraryItems(response);
+      })
+      .catch((errors) => {
+        console.error(errors);
+        setErrors(errors);
+      });
   };
 
   const truncateString = (text) => {
@@ -75,6 +87,44 @@ const Library: React.FC = () => {
       book: choice,
     };
     await api("POST", "readingList", updateLocalState, setErrors, true, data);
+  };
+
+  const markAsComplete = async (e) => {
+    const id = e.target.id;
+    const currentdate = new Date();
+    const datetime =
+      currentdate.getFullYear() +
+      "-" +
+      (currentdate.getMonth() + 1) +
+      "-" +
+      currentdate.getDate() +
+      "T" +
+      currentdate.getHours() +
+      ":" +
+      currentdate.getMinutes() +
+      ":" +
+      currentdate.getSeconds();
+
+    console.log(datetime);
+    const data = {
+      finished_on: datetime,
+    };
+
+    let apiInterface = new APIInterface(
+      "updateLibraryItem",
+      data,
+      undefined,
+      id
+    );
+    apiInterface
+      .request()
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((errors) => {
+        console.error(errors);
+        setErrors(errors);
+      });
   };
 
   return (
@@ -164,6 +214,24 @@ const Library: React.FC = () => {
                           value={item.id}
                           onClickHandler={proceedToSession}
                         />
+
+                        <Popup
+                          trigger={
+                            <button
+                              className={`${buttonStyle.formButton} text-sm-center open-menu`}
+                            >
+                              {" "}
+                              Options
+                            </button>
+                          }
+                          position="right center"
+                        >
+                          <ul className={styles.menu}>
+                            <li id={item.id} onClick={(e) => markAsComplete(e)}>
+                              Mark as complete
+                            </li>
+                          </ul>
+                        </Popup>
                       </Card.Body>
                     </Col>
                   </Row>
