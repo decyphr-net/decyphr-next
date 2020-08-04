@@ -1,26 +1,42 @@
 .header {
   width: 100%;
-  height: 800px;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-content: center;
   flex-direction: column;
   text-align: center;
-  color: white;
+  color: #fbe8a6;
+  background-color: #303c6c;
 
-  background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
-
-  .firstHeading {
-    font-weight: 300;
-    font-size: 2.25em;
+  .logo {
+    img {
+      width: 30%;
+    }
   }
 
   .paragraph {
-    font-size: 1.25em;
+    font-size: 0.75em;
   }
 
   .callToAction {
-    margin-top: 7.5%;
+    a {
+      text-decoration: none;
+      color: #fbe8a6;
+      width: 15%;
+      padding: 1%;
+      font-weight: 500;
+      background-color: #303c6c;
+      border: 7.5px solid #fbe8a6;
+      border-radius: 25px;
+      font-size: 1.75em;
+
+      &:hover {
+        color: #303c6c;
+        background-color: #fbe8a6;
+        border-radius: 25px;
+      }
+    }
   }
 }
 
@@ -34,7 +50,7 @@
   h2 {
     font-size: 2.25em;
     padding-bottom: 3%;
-    color: #4facfe;
+    color: #303c6c;
   }
 
   p {

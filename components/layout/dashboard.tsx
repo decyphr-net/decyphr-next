@@ -1,18 +1,43 @@
-import Head from 'next/head'
-import { Container, Row, Col } from 'react-bootstrap'
-import Navigation from '../../components/layout/Navigation'
-import styles from './dashboard.module.scss'
+import { useState } from "react";
+import Head from "next/head";
+import { Container, Row, Col } from "react-bootstrap";
+import {
+  Toolbar,
+  SideDrawer,
+  Backdrop,
+} from "../../components/layout/Navigation";
+import styles from "./dashboard.module.scss";
 
-export default function DashboardLayout({ children, title, pageTitle, pageSubtitle }) {
+export default function DashboardLayout({
+  children,
+  title,
+  pageTitle,
+  pageSubtitle,
+}) {
+  const [sideDrawerOpen, setSideDrawerOpen] = useState(false);
+
+  const drawerToggle = () => {
+    setSideDrawerOpen(!sideDrawerOpen);
+  };
+
+  const backdropClickHandler = () => {
+    setSideDrawerOpen(false);
+  };
 
   return (
     <>
       <Head>
-        <title>{ title }</title>
+        <title>{title}</title>
       </Head>
       <Container fluid>
         <main className={styles.layout}>
-          <Navigation />
+          <Toolbar drawerClickHandler={drawerToggle} />
+          {sideDrawerOpen && (
+            <>
+              <SideDrawer drawerClickHandler={drawerToggle} />
+              <Backdrop click={backdropClickHandler} />
+            </>
+          )}
           <section>
             <Row noGutters={true}>
               <Col xs={{ span: 11, offset: 1 }}>
@@ -25,11 +50,9 @@ export default function DashboardLayout({ children, title, pageTitle, pageSubtit
             </Row>
           </section>
 
-          <section>
-            {children}
-          </section>
+          <section>{children}</section>
         </main>
       </Container>
     </>
-  )
+  );
 }
