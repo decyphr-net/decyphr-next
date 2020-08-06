@@ -78,23 +78,3 @@ export const Toolbar = (props) => {
     </header>
   );
 };
-
-const Navigation: React.FC = () => {
-  const { locale, t } = useTranslation();
-
-  return (
-    <Navbar className={styles.navigation}>
-      <Navbar.Brand>
-        <img src="/nav-logo.png" />
-      </Navbar.Brand>
-      <Nav className="mr-auto">
-        <Link href="/[lang]/library" as={`/${locale}/library`}>
-          <a>My Library</a>
-        </Link>
-        <Link href="/[lang]/practice" as={`/${locale}/practice`}>
-          <a>Practice</a>
-        </Link>
-      </Nav>
-    </Navbar>
-  );
-};
