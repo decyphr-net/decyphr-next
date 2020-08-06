@@ -22,10 +22,7 @@ const Home: React.FC = () => {
           </div>
 
           <p className={styles.callToAction}>
-            <Link
-              href="/[lang]/accounts/login"
-              as={`/${locale}/accounts/login`}
-            >
+            <Link href="/api/login">
               <a>{t("Index.header.calltoaction")}</a>
             </Link>
           </p>
