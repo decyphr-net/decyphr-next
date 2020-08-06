@@ -26,11 +26,6 @@ const Home: React.FC = () => {
               <a>{t("Index.header.calltoaction")}</a>
             </Link>
           </p>
-          <p className={styles.callToAction}>
-            <Link href="/api/logout">
-              <a>Logout</a>
-            </Link>
-          </p>
         </header>
         <article id="about" className={styles.about}>
           <section>
