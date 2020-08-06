@@ -7,7 +7,8 @@ import useTranslation from "../../../i18n/hooks/useTranslation";
 import APIInterface from "../../../utils/api/client";
 import DashboardLayout from "../../../components/layout/dashboard";
 import { Button } from "../../../components/elements/Button";
-import auth0 from "../../../utils/auth/auth0";
+import getSessionOrRedirect from "../../../utils/auth/getUserSession";
+import getUserStats from "../../../utils/auth/getUserStats";
 
 const Dashboard: NextPage = (props) => {
   const { locale, t } = useTranslation();
@@ -20,6 +21,7 @@ const Dashboard: NextPage = (props) => {
   const [errors, setErrors] = useState([]);
 
   useEffect(() => {
+    console.log(props);
     getDashboardData();
   }, []);
 
@@ -90,17 +92,9 @@ const Dashboard: NextPage = (props) => {
 };
 
 Dashboard.getInitialProps = async ({ req, res }) => {
-  if (typeof window === "undefined") {
-    const session = await auth0.getSession(req);
-    if (!session || !session.user) {
-      res.writeHead(302, {
-        Location: "/api/login",
-      });
-      res.end();
-      return;
-    }
-    return { user: session.user };
-  }
+  let session: any = await getSessionOrRedirect(req, res);
+  let userData: any = await getUserStats(session.user.sub);
+  return { session, userData };
 };
 
 // export default Dashboard;

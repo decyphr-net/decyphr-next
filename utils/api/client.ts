@@ -34,7 +34,6 @@ export default class APIInterface<T, U> {
 
   public async request() {
     let url: any = this._createEndpointUrl();
-    console.log(url);
     let response = await fetch(url, {
       method: this._endpoint["method"],
       headers: this._HEADERS,
