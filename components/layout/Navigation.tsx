@@ -40,6 +40,11 @@ export const SideDrawer = (props) => {
             <a href="/">Practice</a>
           </Link>
         </li>
+        <li>
+          <Link href="/api/logout">
+            <a>Logout</a>
+          </Link>
+        </li>
       </ul>
     </nav>
   );
@@ -69,7 +74,12 @@ export const Toolbar = (props) => {
             </li>
             <li>
               <Link href="/[lang]/practice" as={`/${locale}/practice`}>
-                <a href="/">Practice</a>
+                <a>Practice</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/api/logout">
+                <a>Logout</a>
               </Link>
             </li>
           </ul>

@@ -21,7 +21,6 @@ const Dashboard: NextPage = (props) => {
   const [errors, setErrors] = useState([]);
 
   useEffect(() => {
-    console.log(props);
     getDashboardData();
   }, []);
 
@@ -96,7 +95,5 @@ Dashboard.getInitialProps = async ({ req, res }) => {
   let userData: any = await getUserStats(session.user.sub);
   return { session, userData };
 };
-
-// export default Dashboard;
 
 export default withLocale(Dashboard);
