@@ -10,7 +10,12 @@ import { Button } from "../../../components/elements/Button";
 import getSessionOrRedirect from "../../../utils/auth/getUserSession";
 import getUserStats from "../../../utils/auth/getUserStats";
 
-const Dashboard: NextPage = (props) => {
+interface Props {
+  session: any;
+  userData: any;
+}
+
+const Dashboard: NextPage = (props: Props) => {
   const { locale, t } = useTranslation();
 
   const [translationCount, setTranslationCount] = useState(0);
@@ -21,7 +26,9 @@ const Dashboard: NextPage = (props) => {
   const [errors, setErrors] = useState([]);
 
   useEffect(() => {
-    console.log(props);
+    if (props.userData.logins_count === 1) {
+      Router.push(`/[lang]/getting-started`, `/${locale}/getting-started`);
+    }
     getDashboardData();
   }, []);
 
@@ -96,7 +103,5 @@ Dashboard.getInitialProps = async ({ req, res }) => {
   let userData: any = await getUserStats(session.user.sub);
   return { session, userData };
 };
-
-// export default Dashboard;
 
 export default withLocale(Dashboard);

@@ -44,7 +44,7 @@
 }
 
 .navigationItems a {
-  color: white;
+  color: #fbe8a6;
   text-decoration: none;
 
   &:hover,
@@ -112,7 +112,7 @@
   }
 
   & a {
-    color: #fbfbfb;
+    color: #fbe8a6;
     text-decoration: none;
     font-size: 1.2rem;
 
@@ -150,6 +150,10 @@
 @media (min-width: 679px) {
   .sideDrawer {
     width: 600px;
+  }
+
+  .toggleButton {
+    display: None;
   }
 
   .toolbarLogo {
