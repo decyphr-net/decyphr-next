@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import { Navbar, Nav } from "react-bootstrap";
 import withLocale from "../../i18n/hoc/withLocale";
 import useTranslation from "../../i18n/hooks/useTranslation";
 import styles from "./navigation.module.scss";
