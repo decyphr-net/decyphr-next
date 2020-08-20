@@ -1,18 +1,17 @@
 import Head from "next/head";
+import { PrismaClient } from "@prisma/client";
 import { Row, Col } from "react-bootstrap";
-import withLocale from "../../i18n/hoc/withLocale";
-import useTranslation from "../../i18n/hooks/useTranslation";
 import Link from "next/link";
 import Footer from "../../components/layout/Footer";
 import styles from "./index.module.scss";
 
-const Home: React.FC = () => {
-  const { locale, t } = useTranslation();
+const Home: React.FC = (props) => {
+  console.log(props);
 
   return (
     <div className="container-fluid">
       <Head>
-        <title>{t("Index.title")}</title>
+        <title>Decyphr - Learn languages faster!</title>
       </Head>
 
       <main>
@@ -23,7 +22,7 @@ const Home: React.FC = () => {
 
           <p className={styles.callToAction}>
             <Link href="/api/login">
-              <a>{t("Index.header.calltoaction")}</a>
+              <a>Start Reading!</a>
             </Link>
           </p>
         </header>
@@ -35,13 +34,26 @@ const Home: React.FC = () => {
               </Col>
 
               <Col sm={12} md={8}>
-                <h2>{t("Index.about.whatisitheader")}</h2>
+                <h2>What does Decyphr do?</h2>
 
-                <p>{t("Index.about.whatisitparagraph1")}</p>
+                <p>
+                  Decyphr was built to help you translate text from the language
+                  that your are learning in to your own native language.
+                </p>
 
-                <p>{t("Index.about.whatisitparagraph2")}</p>
+                <p>
+                  While learning to read a new book you can translate your text
+                  and get a breakdown of the structure of your translation, as
+                  well as an audio clip so you can also get an idea of what the
+                  text should sound like in the original text.
+                </p>
 
-                <p>{t("Index.about.whatisitparagraph3")}</p>
+                <p>
+                  Decyphr will take the text that you have translated and
+                  generate quizzes for you to allow you to practice, meaning you
+                  create the context for your learning from the books that you
+                  are reading.
+                </p>
               </Col>
             </Row>
           </section>
@@ -52,10 +64,28 @@ const Home: React.FC = () => {
               </Col>
 
               <Col sm={12} md={8}>
-                <h2>{t("Index.about.whydecyphrheader")}</h2>
-                <p>{t("Index.about.whydecyphrparagraph1")}</p>
-                <p>{t("Index.about.whydecyphrparagraph2")}</p>
-                <p>{t("Index.about.whydecyphrparagraph3")}</p>
+                <h2>Why choose Decyphr?</h2>
+                <p>
+                  Decyphr allows you to choose which books to read and enables
+                  you to monitor your process throughout your own personalized
+                  library. This will be able to tell how much progress you are
+                  making on your journey to becoming fluent in your new
+                  language.
+                </p>
+                <p>
+                  Not only does Decyphr translate the text from your book, but
+                  it also helps you to understand the structure of the sentences
+                  that you have translated by telling you what words are verbs
+                  or nouns, and what tenses a verb belongs to.
+                </p>
+                <p>
+                  Decyphr will quiz you on the phrases that you have translated
+                  from your books. This means that, because you are in complete
+                  control of the material that you are reading, the material
+                  that you will be quizzed on will be tailored to whatever
+                  context you choose, giving you a completely personalized
+                  learning experience.
+                </p>
               </Col>
             </Row>
           </section>
@@ -67,4 +97,15 @@ const Home: React.FC = () => {
   );
 };
 
-export default withLocale(Home);
+export async function getStaticProps() {
+  const prisma = new PrismaClient();
+  const posts = await prisma.user.findMany();
+
+  return {
+    props: {
+      posts,
+    },
+  };
+}
+
+export default Home;
