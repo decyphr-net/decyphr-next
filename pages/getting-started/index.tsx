@@ -1,12 +1,9 @@
 import { useState } from "react";
 import useSWR from "swr";
-import withLocale from "../../../i18n/hoc/withLocale";
-import useTranslation from "../../../i18n/hooks/useTranslation";
-import { Button } from "../../../components/elements/Button";
-import { TextInput, SelectInput } from "../../../components/elements/Input";
+import { Button } from "../../components/elements/Button";
+import { TextInput, SelectInput } from "../../components/elements/Input";
 
 const GettingStarted = () => {
-  const { locale, t } = useTranslation();
   const [nativeLanguage, setNativeLanguage] = useState<string>("");
   const [newLanguage, setNewLanguage] = useState<string>("");
   const [languagePreference, setLanguagePreference] = useState<string>("");
@@ -32,15 +29,15 @@ const GettingStarted = () => {
 
       <form>
         <SelectInput
-          placeholder={t("Accounts.register.leftpanel.nativelanguage")}
-          label={t("Accounts.register.leftpanel.nativelanguage")}
+          placeholder="Native Language"
+          label="Native Language"
           name="nativelanguage"
           dataset={languages}
           onChangeHandler={setNativeLanguage}
         />
         <SelectInput
-          placeholder={t("Accounts.register.leftpanel.newlanuagagefield")}
-          label={t("Accounts.register.leftpanel.newlanuagagefield")}
+          placeholder="New Language"
+          label="New Language"
           name="newlanguage"
           dataset={languages}
           onChangeHandler={setNewLanguage}
@@ -50,4 +47,4 @@ const GettingStarted = () => {
   );
 };
 
-export default withLocale(GettingStarted);
+export default GettingStarted;

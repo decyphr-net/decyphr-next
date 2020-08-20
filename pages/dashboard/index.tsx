@@ -1,23 +1,20 @@
 import { useState, useEffect } from "react";
+import fetch from "node-fetch";
 import Router from "next/router";
 import { Card, Row, Col } from "react-bootstrap";
-import withLocale from "../../../i18n/hoc/withLocale";
 import { NextPage } from "next";
-import useTranslation from "../../../i18n/hooks/useTranslation";
-import APIInterface from "../../../utils/api/client";
-import DashboardLayout from "../../../components/layout/dashboard";
-import { Button } from "../../../components/elements/Button";
-import getSessionOrRedirect from "../../../utils/auth/getUserSession";
-import getUserStats from "../../../utils/auth/getUserStats";
+import APIInterface from "../../utils/api/client";
+import DashboardLayout from "../../components/layout/dashboard";
+import { Button } from "../../components/elements/Button";
+import getSessionOrRedirect from "../../utils/auth/getUserSession";
+import getUserStats from "../../utils/auth/getUserStats";
 
 interface Props {
   session: any;
   userData: any;
 }
 
-const Dashboard: NextPage = (props: Props) => {
-  const { locale, t } = useTranslation();
-
+const Dashboard: NextPage<Props> = (props: Props) => {
   const [translationCount, setTranslationCount] = useState(0);
   const [libraryItemCount, setlibraryItemCount] = useState(0);
   const [readingSessionCount, setReadingSessionCount] = useState(0);
@@ -26,8 +23,14 @@ const Dashboard: NextPage = (props: Props) => {
   const [errors, setErrors] = useState([]);
 
   useEffect(() => {
+    fetch("http://127.0.0.1:3000/api/create", {
+      method: "POST",
+      body: JSON.stringify(props.userData),
+    })
+      .then((r) => r.json())
+      .then((data) => console.log(data));
     if (props.userData.logins_count === 1) {
-      Router.push(`/[lang]/getting-started`, `/${locale}/getting-started`);
+      Router.push(`/getting-started`);
     }
     getDashboardData();
   }, []);
@@ -51,26 +54,26 @@ const Dashboard: NextPage = (props: Props) => {
 
   const redirectToPage = (e) => {
     let pageName = e.target.value;
-    Router.push(`/[lang]/${pageName}`, `/${locale}/${pageName}`);
+    Router.push(`/${pageName}`);
   };
 
   return (
     <DashboardLayout
-      title={t("Dashboard.page.title")}
-      pageTitle={t("Dashboard.page.header")}
-      pageSubtitle={t("Dashboard.page.subtitle")}
+      title="Decyphr Dashboard"
+      pageTitle="Dashboard"
+      pageSubtitle="Welcome to your Decyphr Dashboard"
     >
       <Row noGutters={true} className="justify-content-md-center">
         <Col className="text-center" sm={12} md={3}>
           <Card>
             <Card.Body>
-              <Card.Title>{t("Dashboard.cards.translation.header")}</Card.Title>
-              <Card.Text>{t("Dashboard.cards.translation.bodyone")}</Card.Text>
+              <Card.Title>Translations</Card.Title>
+              <Card.Text>You have translated</Card.Text>
               <Card.Text>{translationCount}</Card.Text>
-              <Card.Text>{t("Dashboard.cards.translation.bodytwo")}</Card.Text>
+              <Card.Text>pieces of text</Card.Text>
               <Button
                 className={"text-sm-center text-md-right"}
-                text={t("Dashboard.cards.translation.button.text")}
+                text={"Learn new words!"}
                 value={"library"}
                 onClickHandler={redirectToPage}
               />
@@ -80,13 +83,13 @@ const Dashboard: NextPage = (props: Props) => {
         <Col className="text-center" sm={12} md={3}>
           <Card>
             <Card.Body>
-              <Card.Title>{t("Dashboard.cards.practice.header")}</Card.Title>
-              <Card.Text>{t("Dashboard.cards.practice.bodyone")}</Card.Text>
+              <Card.Title>Practice Sessions</Card.Title>
+              <Card.Text>You have completed</Card.Text>
               <Card.Text>{practiceSessionCount}</Card.Text>
-              <Card.Text>{t("Dashboard.cards.practice.bodytwo")}</Card.Text>
+              <Card.Text>sessions to date</Card.Text>
               <Button
                 className={"text-sm-center text-md-right"}
-                text={t("Dashboard.cards.practice.button.text")}
+                text={"Reinforce those words!"}
                 value={"practice"}
                 onClickHandler={redirectToPage}
               />
@@ -98,10 +101,11 @@ const Dashboard: NextPage = (props: Props) => {
   );
 };
 
-Dashboard.getInitialProps = async ({ req, res }) => {
+export const getServerSideProps = async ({ req, res }) => {
   let session: any = await getSessionOrRedirect(req, res);
   let userData: any = await getUserStats(session.user.sub);
-  return { session, userData };
+
+  return { props: { session, userData } };
 };
 
-export default withLocale(Dashboard);
+export default Dashboard;
