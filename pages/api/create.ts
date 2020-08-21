@@ -6,8 +6,9 @@ export default async function create(req, res) {
     const userData = JSON.parse(req.body);
     await prisma.user.create({
       data: {
-        name: `${userData.given_name} ${userData.family_name}`,
-        email: userData.email + "aabcsdfasahavdfsa",
+        name: userData.email,
+        auth0_id: userData.user_id,
+        email: userData.email,
       },
     });
     res.status(201).json({ message: "User created successfully" });
