@@ -1,3 +1,4 @@
 # Prisma Migrate lockfile v1
 
 20200819184107-create-user
+20200821115707-add-auth0_id
